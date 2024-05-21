@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
-// import bot from "../public/bot.png"
 
 const Navbar = () => {
   // 현재 선택된 아이콘을 관리하는 state
