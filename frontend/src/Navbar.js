@@ -6,11 +6,11 @@ const Navbar = () => {
   // 현재 주소
   const location = useLocation();
 
-  const isFirstLink = matchPath({path: '/first/*'}, location.pathname);
-  const isSecondLink = matchPath({path: '/second/*'}, location.pathname);
-  const isDiaryLink = matchPath({path: '/diary/*'}, location.pathname);
-  const isFourthLink = matchPath({path: '/fourth/*'}, location.pathname);
-  const isFifthLink = matchPath({path: '/fifth/*'}, location.pathname);
+  const isFirstLink = matchPath({path: '/first/*'}, location.pathname); //00봇
+  const isSecondLink = matchPath({path: '/second/*'}, location.pathname); //실시간 영상
+  const isDiaryLink = matchPath({path: '/diary/*'}, location.pathname); //공감일기
+  const isFourthLink = matchPath({path: '/fourth/*'}, location.pathname); //워드 클라우드
+  const isQuestionLink = matchPath({path: '/question/*'}, location.pathname); //일일문답
   return (
     <nav className="navbar">
       
@@ -18,7 +18,7 @@ const Navbar = () => {
       <Link to="/first" className="nav-link" style={{ textDecoration: 'none' }}>
         <div>
           {isFirstLink ? (
-          <img src="/bot.png" alt="챗봇" /> //선택 했을 때
+          <img src="/bot1.png" alt="챗봇" /> //선택 했을 때
           ) : (
           <img src="/bot_un.png" alt="챗봇" /> // 선택 안 했을 때
           )}
@@ -54,23 +54,23 @@ const Navbar = () => {
       <Link to="/fourth" className="nav-link" style={{ textDecoration: 'none' }}>
         <div>
           {isFourthLink ? (
-          <img src="/word_cloud.png" alt="공감일기" /> //선택 했을 때
+          <img src="/word_cloud.png" alt="워드클라우드" /> //선택 했을 때
           ) : (
-          <img src="/word_cloud_un.png" alt="공감일기" /> // 선택 안 했을 때
+          <img src="/word_cloud_un.png" alt="워드클라우드" /> // 선택 안 했을 때
           )}
           <div className={isFourthLink ? 'active' : 'inactive'}>워드클라우드</div>
         </div>
       </Link>
 
       {/* 1일 1문답 */}
-      <Link to="/fifth" className="nav-link" style={{ textDecoration: 'none' }}>
+      <Link to="/question/list" className="nav-link" style={{ textDecoration: 'none' }}>
         <div>
-          {isFifthLink ? (
+          {isQuestionLink ? (
           <img src="/question.png" alt="일일문답" /> //선택 했을 때
           ) : (
           <img src="/question_un.png" alt="일일문답" /> // 선택 안 했을 때
           )}
-          <div className={isFifthLink ? 'active' : 'inactive'}>일일문답</div>
+          <div className={isQuestionLink ? 'active' : 'inactive'}>일일문답</div>
         </div>
       </Link>
 
