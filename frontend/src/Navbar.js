@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
-
+// <div>00봇</div> -> 00에 자식 이름 넣기
 const Navbar = () => {
   // 현재 선택된 아이콘을 관리하는 state
   const [activeNav, setActiveNav] = useState(1);
@@ -48,9 +48,9 @@ const Navbar = () => {
       <Link to="/fourth" className="nav-link" onClick={() => setActiveNav(4)} style={{ textDecoration: 'none' }}>
         <div>
           {activeNav === 4 ? (
-          <img src="/word_cloud.png" alt="공감일기" /> //선택 했을 때
+          <img src="/word_cloud.png" alt="워드클라우드" /> //선택 했을 때
           ) : (
-          <img src="/word_cloud_un.png" alt="공감일기" /> // 선택 안 했을 때
+          <img src="/word_cloud_un.png" alt="워드클라우드" /> // 선택 안 했을 때
           )}
           <div className={activeNav === 4 ? 'active' : 'inactive'}>워드클라우드</div>
         </div>
