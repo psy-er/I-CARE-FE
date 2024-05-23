@@ -1,21 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import DiaryDetail from "./feat_diary/DiaryDetail";
+import DiaryCalendar from "./feat_diary/DiaryCalendar";
+import AddDiary from "./feat_diary/AddDiary";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/diary" element={<DiaryCalendar />} />
+      <Route path="/diary/detail" element={<DiaryDetail />} />
+      <Route path="/diary/add" element={<AddDiary />} />
+    </Routes>
   );
 }
 
