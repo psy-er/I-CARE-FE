@@ -18,7 +18,7 @@ const Navbar = () => {
       <Link to="/first" className="nav-link" style={{ textDecoration: 'none' }}>
         <div>
           {isFirstLink ? (
-          <img src="/bot1.png" alt="챗봇" /> //선택 했을 때
+          <img src="/bot.png" alt="챗봇" /> //선택 했을 때
           ) : (
           <img src="/bot_un.png" alt="챗봇" /> // 선택 안 했을 때
           )}
