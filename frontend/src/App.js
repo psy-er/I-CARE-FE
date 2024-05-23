@@ -12,6 +12,7 @@ function App() {
   return (
     <div className="app-wrapper">
     <div className="app-container">
+    
     <Routes>
       {/* 일기 */}
       <Route path="/diary" element={<DiaryCalendar />} />

@@ -1,14 +1,25 @@
 .navbar {
-  height: 85px;
+  height: 65px;
   width: 100%;
   border-top: 1.4px solid grey;
   background-color: white;
   box-sizing: border-box;
   }
 
+  .navbar .big_image {
+    margin-top: 8px;
+    margin-bottom: -0.1rem;
+    width: 37%;
+    height: 37%;
+   object-fit: cover;
+  }
+
   .navbar img {
     margin-top: 5px;
     margin-bottom: -5px;
+    width: 45%;
+    height: 45%;
+   object-fit: cover;
   }
 
   .nav-link {
