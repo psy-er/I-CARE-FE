@@ -4,14 +4,19 @@ import { Route, Routes } from "react-router-dom";
 import DiaryDetail from "./feat_diary/DiaryDetail";
 import DiaryCalendar from "./feat_diary/DiaryCalendar";
 import AddDiary from "./feat_diary/AddDiary";
+import Navbar from "./Navbar";
 
 function App() {
   return (
+    <div>
+      <Navbar />
     <Routes>
       <Route path="/diary" element={<DiaryCalendar />} />
       <Route path="/diary/detail" element={<DiaryDetail />} />
       <Route path="/diary/add" element={<AddDiary />} />
     </Routes>
+    </div>
+
   );
 }
 

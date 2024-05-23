@@ -15,7 +15,7 @@ const Navbar = () => {
     <nav className="navbar">
       
       {/* 00봇 아이콘 */}
-      <Link to="/first" className="nav-link" style={{ textDecoration: 'none' }}>
+      <Link to="/first" className="nav-link" style={{ textDecoration: 'none', fontSize:'0.7rem'}}>
         <div>
           {isFirstLink ? (
           <img src="/bot.png" alt="챗봇" /> //선택 했을 때
@@ -27,7 +27,7 @@ const Navbar = () => {
       </Link>
 
       {/* 실시간 영상 */}
-      <Link to="/second" className="nav-link" style={{ textDecoration: 'none' }}>
+      <Link to="/second" className="nav-link" style={{ textDecoration: 'none', fontSize:'0.7rem'}}>
         <div>
           {isSecondLink ? (
           <img src="/bot.png" alt="실시간 영상" /> //선택 했을 때
@@ -39,7 +39,7 @@ const Navbar = () => {
       </Link>
 
       {/* 일기 작성 */}
-      <Link to="/diary" className="nav-link" style={{ textDecoration: 'none' }}>
+      <Link to="/diary" className="nav-link" style={{ textDecoration: 'none', fontSize:'0.7rem'}}>
         <div> 
           {isDiaryLink ? (
           <img src="/diary.png" alt="공감일기" /> //선택 했을 때
@@ -51,7 +51,7 @@ const Navbar = () => {
       </Link>
 
       {/* 워드 클라우드 */}
-      <Link to="/fourth" className="nav-link" style={{ textDecoration: 'none' }}>
+      <Link to="/fourth" className="nav-link" style={{ textDecoration: 'none', fontSize:'0.7rem'}}>
         <div>
           {isFourthLink ? (
           <img src="/word_cloud.png" alt="워드클라우드" /> //선택 했을 때
@@ -63,7 +63,7 @@ const Navbar = () => {
       </Link>
 
       {/* 1일 1문답 */}
-      <Link to="/question/list" className="nav-link" style={{ textDecoration: 'none' }}>
+      <Link to="/question/list" className="nav-link" style={{ textDecoration: 'none', fontSize:'0.7rem'}}>
         <div>
           {isQuestionLink ? (
           <img src="/question.png" alt="일일문답" /> //선택 했을 때
