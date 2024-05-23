@@ -1,7 +1,7 @@
 .navbar {
   height: 65px;
   width: 100%;
-  border-top: 1.4px solid grey;
+  border-top: 0.05rem solid #dddddd;
   background-color: white;
   box-sizing: border-box;
   }
