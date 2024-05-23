@@ -1,12 +1,9 @@
 .navbar {
-  height: 80px;  /* navbar 높이 */
-  position: fixed; /* 하단에 고정 */
-  bottom: 0; /* 하단에 고정 */ 
-  max-width: 350px;
+  height: 85px;
   width: 100%;
-  border-top: 1.4px solid grey; /* 경계선 */
-  left: 50%;
-  transform: translateX(-50%);
+  border-top: 1.4px solid grey;
+  background-color: white;
+  box-sizing: border-box;
   }
 
   .navbar img {

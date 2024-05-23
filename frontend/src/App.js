@@ -10,10 +10,9 @@ import Navbar from "./Navbar";
 
 function App() {
   return (
-    <div>
-      <Navbar />
+    <div className="app-wrapper">
+    <div className="app-container">
     <Routes>
-      
       {/* 일기 */}
       <Route path="/diary" element={<DiaryCalendar />} />
       <Route path="/diary/detail" element={<DiaryDetail />} />
@@ -25,7 +24,8 @@ function App() {
 
     </Routes>
     </div>
-
+    <Navbar />
+    </div>
   );
 }
 
