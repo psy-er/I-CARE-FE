@@ -1,0 +1,28 @@
+.check {
+  display: flex;
+  justify-content: right;
+}
+
+.check .link {
+  color: #000;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: normal;
+  margin-top: 1px;
+}
+
+.check .link:hover {
+  font-weight: bold;
+}
+
+.check button {
+  margin-left: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.check button:hover {
+  font-weight: bold;
+}

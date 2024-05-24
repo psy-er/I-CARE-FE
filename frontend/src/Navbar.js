@@ -6,16 +6,16 @@ const Navbar = () => {
   // 현재 주소
   const location = useLocation();
 
-  const isFirstLink = matchPath({path: '/first/*'}, location.pathname);
-  const isSecondLink = matchPath({path: '/second/*'}, location.pathname);
-  const isDiaryLink = matchPath({path: '/diary/*'}, location.pathname);
-  const isFourthLink = matchPath({path: '/fourth/*'}, location.pathname);
-  const isFifthLink = matchPath({path: '/fifth/*'}, location.pathname);
+  const isFirstLink = matchPath({path: '/first/*'}, location.pathname); //00봇
+  const isSecondLink = matchPath({path: '/second/*'}, location.pathname); //실시간 영상
+  const isDiaryLink = matchPath({path: '/diary/*'}, location.pathname); //공감일기
+  const isFourthLink = matchPath({path: '/fourth/*'}, location.pathname); //워드 클라우드
+  const isQuestionLink = matchPath({path: '/question/*'}, location.pathname); //일일문답
   return (
     <nav className="navbar">
       
       {/* 00봇 아이콘 */}
-      <Link to="/first" className="nav-link" style={{ textDecoration: 'none' }}>
+      <Link to="/first" className="nav-link" style={{ textDecoration: 'none', fontSize:'0.7rem'}}>
         <div>
           {isFirstLink ? (
           <img src="/bot.png" alt="챗봇" /> //선택 했을 때
@@ -27,7 +27,7 @@ const Navbar = () => {
       </Link>
 
       {/* 실시간 영상 */}
-      <Link to="/second" className="nav-link" style={{ textDecoration: 'none' }}>
+      <Link to="/second" className="nav-link" style={{ textDecoration: 'none', fontSize:'0.7rem'}}>
         <div>
           {isSecondLink ? (
           <img src="/bot.png" alt="실시간 영상" /> //선택 했을 때
@@ -39,7 +39,7 @@ const Navbar = () => {
       </Link>
 
       {/* 일기 작성 */}
-      <Link to="/diary" className="nav-link" style={{ textDecoration: 'none' }}>
+      <Link to="/diary" className="nav-link" style={{ textDecoration: 'none', fontSize:'0.7rem'}}>
         <div> 
           {isDiaryLink ? (
           <img src="/diary.png" alt="공감일기" /> //선택 했을 때
@@ -51,26 +51,26 @@ const Navbar = () => {
       </Link>
 
       {/* 워드 클라우드 */}
-      <Link to="/fourth" className="nav-link" style={{ textDecoration: 'none' }}>
+      <Link to="/fourth" className="nav-link" style={{ textDecoration: 'none', fontSize:'0.7rem'}}>
         <div>
           {isFourthLink ? (
-          <img src="/word_cloud.png" alt="공감일기" /> //선택 했을 때
+          <img src="/word_cloud.png" alt="워드클라우드" /> //선택 했을 때
           ) : (
-          <img src="/word_cloud_un.png" alt="공감일기" /> // 선택 안 했을 때
+          <img src="/word_cloud_un.png" alt="워드클라우드" /> // 선택 안 했을 때
           )}
           <div className={isFourthLink ? 'active' : 'inactive'}>워드클라우드</div>
         </div>
       </Link>
 
       {/* 1일 1문답 */}
-      <Link to="/fifth" className="nav-link" style={{ textDecoration: 'none' }}>
+      <Link to="/question/list" className="nav-link" style={{ textDecoration: 'none', fontSize:'0.7rem'}}>
         <div>
-          {isFifthLink ? (
-          <img src="/question.png" alt="일일문답" /> //선택 했을 때
+          {isQuestionLink ? (
+          <img className="big_image" src="/question.png" alt="일일문답" /> //선택 했을 때
           ) : (
-          <img src="/question_un.png" alt="일일문답" /> // 선택 안 했을 때
+          <img className="big_image" src="/question_un.png" alt="일일문답" /> // 선택 안 했을 때
           )}
-          <div className={isFifthLink ? 'active' : 'inactive'}>일일문답</div>
+          <div className={isQuestionLink ? 'active' : 'inactive'}>일일문답</div>
         </div>
       </Link>
 
