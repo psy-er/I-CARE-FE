@@ -1,0 +1,30 @@
+.detail {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 40px;
+  box-shadow: 0 0 5px 0 rgba(0,0,0,0.2);
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.date {
+  font-size: 15px;
+  margin: 7px;
+  color: #777;
+}
+
+.iconDetail {
+  font-size: 25px;
+}
+
+.content {
+  margin: 20px;
+  font-weight: bold;
+  font-size: 15px;
+}
