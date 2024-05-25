@@ -1,0 +1,34 @@
+.summary {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 40px;
+  box-shadow: 0 0 5px 0 rgba(0,0,0,0.2);
+}
+
+.summary:hover {
+  background-color: #f0f0f0;
+}
+
+.summary .title {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.summary .date {
+  font-size: 15px;
+  margin: 7px;
+  color: #777;
+}
+
+.summary .iconDetail {
+  font-size: 25px;
+}
+
+.summary .content {
+  margin: 20px;
+  font-weight: bold;
+  font-size: 15px;
+}
