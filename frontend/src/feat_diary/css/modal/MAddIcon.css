@@ -1,0 +1,26 @@
+.modalIcons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 40px;
+}
+
+.modalIcon {
+  padding: 10px;
+  background-color: #efefef;
+  border: #efefef;
+  border-radius: 30px;
+}
+
+.modalIcon:hover {
+  border: 1px solid #6271f5;
+  cursor: pointer;
+}
+
+.modalIcon.selected {
+  border: 1px solid #6271f5;
+}
+
+.modalP {
+  font-size: 14px;
+}
