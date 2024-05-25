@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import './css/DiaryCalendar.css';
 import { addDays, endOfMonth, startOfWeek, endOfWeek, isSameDay } from 'date-fns';
-import { call } from '../api/ApiService';
 import DiaryDay from "./DiaryDay";
-import DiaryDetail from "./DiaryDetail";
+import DiarySummary from "./DiarySummary";
+import { getDiaryList } from "./api/api-diary";
 
 const DiaryCalendar = () => {
   const [diaryList, setDiaryList] = useState([]);
   const [year, setYear] = useState();
   const [month, setMonth] = useState();
-  const [days, setDays] = useState([]);
+  const [dates, setDates] = useState([]);
   const [current, setCurrent] = useState();
   const [selectedDiary, setSelectedDiary] = useState();
 
@@ -17,36 +17,43 @@ const DiaryCalendar = () => {
     const today = new Date();
     setYear(today.getFullYear());
     setMonth(today.getMonth() + 1);
-    setCurrent(today);
   }, []);
 
-  const showCalendar = useCallback(() => {
+  useEffect(() => {
     const monthStart = new Date(year, month-1, 1);
     const monthEnd = endOfMonth(monthStart);
     const startDate = startOfWeek(monthStart);
     const endDate = endOfWeek(monthEnd);
+
     let presentDate = startDate;
-    const nowDays = [];
+    const nowDates = [];
     while (presentDate <= endDate) {
-      nowDays.push(presentDate);
+      nowDates.push(presentDate);
       presentDate = addDays(presentDate, 1);
     }
-    setDays(nowDays);
+    setDates(nowDates);
     setCurrent(monthStart);
-  }, [month, year]);
+  }, [year, month]);
+
+  const formatDate = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
 
   useEffect(() => {
-    if(year && month){
-      const childId = "temporary-childId";
-      call(`/api/diary/list?childId=${childId}&year=${year}&month=${month}`, "GET", null)
-        .then((response) => {
-          if(response) {
-            setDiaryList(response);
+    if(dates.length){
+      const startDate = formatDate(dates[0])
+      const endDate = formatDate(dates[dates.length - 1])
+      getDiaryList(startDate, endDate)
+        .then(diaryList => {
+          if(diaryList) {
+            setDiaryList(diaryList);
           }
         });
-      showCalendar();
     }
-  }, [month, year, showCalendar]);
+  }, [dates]);
 
   const onLeftClick = () => {
     if(month === 1) {
@@ -67,29 +74,19 @@ const DiaryCalendar = () => {
   }
 
   const onSelected = (diary, icon) => {
-    if(diary && icon) {
-      setSelectedDiary({
-        diary: diary,
-        icon: icon
-      });
-    } else {
-      setSelectedDiary({
-        diary: null,
-        icon: null
-      });
-    }
+    setSelectedDiary(diary && icon ? {diary, icon} : null);
   }
 
   const renderWeeks = () => {
     const weeks = [];
-    for(let i = 0; i < days.length; i += 7) {
-      const week = days.slice(i, i + 7);
+    for(let i = 0; i < dates.length; i += 7) {
+      const week = dates.slice(i, i + 7);
       weeks.push(
         <div key={i} className="week" style={{display: 'flex', justifyContent: 'center'}}>
-          {week.map((day, index) => {
-            const diary = diaryList.find(diary => isSameDay(new Date(diary.date), day));
-            return <DiaryDay key={index} year={year} month={month} day={day}
-                      diary={diary} current={current} onSelected={onSelected} />;
+          {week.map((date, index) => {
+            const diary = diaryList.find(diary => isSameDay(new Date(diary.date), date));
+            return <DiaryDay key={index} date={date} diary={diary}
+                      current={current} onSelected={onSelected} />;
           })}
         </div>
       )
@@ -114,7 +111,7 @@ const DiaryCalendar = () => {
           {renderWeeks()}
         </div>
       </div>
-      {selectedDiary && <DiaryDetail selectedDiary={selectedDiary} />}
+      {selectedDiary && <DiarySummary selectedDiary={selectedDiary} />}
     </div>
   );
 }
