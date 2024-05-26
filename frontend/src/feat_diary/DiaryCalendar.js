@@ -4,8 +4,10 @@ import { addDays, endOfMonth, startOfWeek, endOfWeek, isSameDay } from 'date-fns
 import DiaryDay from "./DiaryDay";
 import DiarySummary from "./DiarySummary";
 import { getDiaryList } from "./api/api-diary";
+import { useLocation } from "react-router-dom";
 
 const DiaryCalendar = () => {
+  const location = useLocation();
   const [diaryList, setDiaryList] = useState([]);
   const [year, setYear] = useState();
   const [month, setMonth] = useState();
@@ -14,10 +16,16 @@ const DiaryCalendar = () => {
   const [selectedDiary, setSelectedDiary] = useState();
 
   useEffect(() => {
-    const today = new Date();
-    setYear(today.getFullYear());
-    setMonth(today.getMonth() + 1);
-  }, []);
+    const deletedDate = new Date(location.state?.deletedDate);
+    if(!isNaN(deletedDate)) {
+      setYear(deletedDate.getFullYear());
+      setMonth(deletedDate.getMonth() + 1);
+    } else {
+      const today = new Date();
+      setYear(today.getFullYear());
+      setMonth(today.getMonth() + 1);
+    }
+  }, [location.state]);
 
   useEffect(() => {
     const monthStart = new Date(year, month-1, 1);
