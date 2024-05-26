@@ -2,13 +2,14 @@ import React, { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import MAddIcon from "./modal/MAddIcon";
 import './css/AddDiary.css';
-import { postDiary } from "./api/api-diary";
+import { postDiary, putDiary } from "./api/api-diary";
 
 const AddDiary = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
   const date = location.state?.date || new Date();
+  const oldDiary = location.state?.diary;
   const formatDate = (date) => {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -16,9 +17,10 @@ const AddDiary = () => {
     return `${year}-${month}-${day}`;
   }
   const [diary, setDiary] = useState({
+    diaryId: oldDiary?.diaryId || null,
     date: formatDate(date),
-    content: "",
-    iconId: 0
+    content: oldDiary?.content || "",
+    iconId: null
   });
 
   const stringDate = location.state?.stringDate;
@@ -54,15 +56,28 @@ const AddDiary = () => {
   const onSubmit = async () => {
     if(diary.iconId) {
       setIsPopupOpen(false);
-      try {
-        postDiary(diary)
-          .then(diary => {
-            if(diary) {
-              navigate('/diary/detail', {state: {diary}});
-            }
-          });
-      } catch(error) {
-        console.error('Error add diary: ', error);
+      if(diary.diaryId) {
+        try {
+          putDiary(diary)
+            .then(diary => {
+              if(diary) {
+                navigate('/diary/detail', {state: {diary}});
+              }
+            });
+        } catch(error) {
+          console.error('Error add diary: ', error);
+        }
+      } else {
+        try {
+          postDiary(diary)
+            .then(diary => {
+              if(diary) {
+                navigate('/diary/detail', {state: {diary}});
+              }
+            });
+        } catch(error) {
+          console.error('Error add diary: ', error);
+        }
       }
     }
   }

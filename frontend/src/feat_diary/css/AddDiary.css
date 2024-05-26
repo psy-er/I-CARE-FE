@@ -11,10 +11,11 @@
 .add .content {
   background-color: #fff;
   margin-top: 10px;
-  padding: 10px;
+  padding: 15px;
   border-radius: 10px;
   width: 100%;
   font-size: 17px;
+  font-family:Arial, Helvetica, sans-serif;
   box-sizing: border-box;
   border: none;
   outline: none;
