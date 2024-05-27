@@ -3,20 +3,16 @@
     justify-content: center;
     font-weight: bold;
     font-size: 15px;
-    margin: 10px;
+    margin-bottom: 15px;
   }
 
 .todayOutput {
-    text-align: center;
     color: #999999;
-    background-color: #fff;
     overflow: hidden;
-    border: 1.5px solid #ddd;
     font-size: 16px;
+    width:320px;
 
-    margin: 15px 0px; /* 상하(15) 좌우(0) */
     padding: 15px;
-    border-radius: 10px;
 }
 
 .date {
@@ -25,6 +21,7 @@
     margin: -2px 10px 0px; /* 상 좌우 하*/
     color: #999999;
     font-size: 13px;
+    margin-top: 15px;
 }
 
 .line {
@@ -45,27 +42,11 @@
 
 .selectBox {
     font-size: 11px;
-    width: 110px;
+    width: 120px;
 }
 
 .searchBox {
-    display: flex;
-    align-items: center; /* 수직 가운데 정렬 */
-    justify-content: space-between;
-
     background-color: #fff;
-    border: 1px solid #ccc;
-    font-size: 11px;
-    width: 180px;
-    height: 37px;
-
-    margin-bottom: 5px;
-    padding: 0px 10px;
-    border-radius: 10px;
-}
-
-.searchText {
-    color: #999999;
 }
 
 .searchIcon {
