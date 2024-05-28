@@ -63,7 +63,7 @@ const Navbar = () => {
       </Link>
 
       {/* 1일 1문답 */}
-      <Link to="/question/list" className="nav-link" style={{ textDecoration: 'none', fontSize:'0.7rem'}}>
+      <Link to="/question" className="nav-link" style={{ textDecoration: 'none', fontSize:'0.7rem'}}>
         <div>
           {isQuestionLink ? (
           <img className="big_image" src="/question.png" alt="일일문답" /> //선택 했을 때
