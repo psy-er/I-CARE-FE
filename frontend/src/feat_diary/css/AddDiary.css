@@ -1,0 +1,38 @@
+.add .date {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 10px;
+  color: #000;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.add .content {
+  background-color: #fff;
+  margin-top: 10px;
+  padding: 15px;
+  border-radius: 10px;
+  width: 100%;
+  font-size: 17px;
+  font-family:Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  resize: none;
+  overflow: hidden;
+}
+
+.add .save {
+  width: 100%;
+  background-color: #6271f5;
+  border: none;
+  color: #fff;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.add .save:hover {
+  background-color: #454fac;
+}

@@ -1,2 +1,6 @@
-fe
-test
+npm install
+npm install react-router-dom
+npm install date-fns
+npm insall styled-components
+npm install @mui/icons-material
+npm install @mui/material

@@ -1,0 +1,52 @@
+.detail .date {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 10px;
+  color: #000;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.detail .sub {
+  background-color: #fff;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.detail .icon {
+  font-size: 30px;
+  margin: 15px;
+}
+
+.detail .content {
+  margin: 10px;
+  font-size: 17px;
+  text-align: left;
+}
+
+.detail .edit,.delete {
+  width: 100%;
+  background-color: #6271f5;
+  border: none;
+  color: #fff;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.detail .edit:hover {
+  background-color: #454fac;
+}
+
+.detail .delete {
+  background-color: #e1e1e1;
+}
+
+.detail .delete:hover {
+  background-color: #cccccc;
+}
