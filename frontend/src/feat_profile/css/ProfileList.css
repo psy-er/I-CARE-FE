@@ -1,0 +1,71 @@
+.profileList .sort {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.profileList .sort select {
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  width: 100px;
+  padding: 10px;
+  outline: none;
+  margin-bottom: 15px;
+}
+
+.profile {
+  margin-bottom: 15px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 0 5px 0 rgba(0,0,0,0.2);
+}
+
+.profile .date {
+  font-size: 15px;
+  margin: 10px;
+  color: #777;
+}
+
+.profile .wordCloud {
+  position: relative;
+  width: 100%;
+  height: calc(100% - 100px);
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.profile .wordCloud img {
+  width: 100%;
+  height: auto;
+  margin-top: -50px;
+  margin-bottom: -50px;
+}
+
+.profileList .add {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.profileList .add .plus {
+  display: flex;
+  align-items: center;
+  background-color: #6271f5;
+  border: none;
+  font-size: 20px;
+  color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 2px 10px;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.profileList .add .plus span {
+  font-size: 40px;
+  margin-right: 10px;
+}
+
+.profileList .add .plus button:hover {
+  background-color: #454fac;
+}

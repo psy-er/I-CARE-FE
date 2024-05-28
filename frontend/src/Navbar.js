@@ -9,7 +9,7 @@ const Navbar = () => {
   const isFirstLink = matchPath({path: '/first/*'}, location.pathname); //00봇
   const isSecondLink = matchPath({path: '/second/*'}, location.pathname); //실시간 영상
   const isDiaryLink = matchPath({path: '/diary/*'}, location.pathname); //공감일기
-  const isFourthLink = matchPath({path: '/fourth/*'}, location.pathname); //워드 클라우드
+  const isProfileLink = matchPath({path: '/profile/*'}, location.pathname); //워드 클라우드
   const isQuestionLink = matchPath({path: '/question/*'}, location.pathname); //일일문답
   return (
     <nav className="navbar">
@@ -51,14 +51,14 @@ const Navbar = () => {
       </Link>
 
       {/* 워드 클라우드 */}
-      <Link to="/fourth" className="nav-link" style={{ textDecoration: 'none', fontSize:'0.7rem'}}>
+      <Link to="/profile" className="nav-link" style={{ textDecoration: 'none', fontSize:'0.7rem'}}>
         <div>
-          {isFourthLink ? (
+          {isProfileLink ? (
           <img src="/word_cloud.png" alt="워드클라우드" /> //선택 했을 때
           ) : (
           <img src="/word_cloud_un.png" alt="워드클라우드" /> // 선택 안 했을 때
           )}
-          <div className={isFourthLink ? 'active' : 'inactive'}>워드클라우드</div>
+          <div className={isProfileLink ? 'active' : 'inactive'}>워드클라우드</div>
         </div>
       </Link>
 
