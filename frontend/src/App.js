@@ -7,6 +7,8 @@ import AddDiary from "./feat_diary/AddDiary";
 import QuestionList from "./question/QuestionList";
 import AddQuestion from "./question/AddQuestion";
 import Navbar from "./Navbar";
+import ProfileList from "./feat_profile/ProfileList";
+import ProfileDetail from "./feat_profile/ProfileDetail";
 
 function App() {
   return (
@@ -18,6 +20,10 @@ function App() {
       <Route path="/diary" element={<DiaryCalendar />} />
       <Route path="/diary/detail" element={<DiaryDetail />} />
       <Route path="/diary/add" element={<AddDiary />} />
+
+      {/* 프로필(워드클라우드) */}
+      <Route path="/profile" element={<ProfileList />} />
+      <Route path="/profile/detail" element={<ProfileDetail />} />
 
       {/* 1일 1질문 */}
       <Route path="/question/list" element={<QuestionList />} />
