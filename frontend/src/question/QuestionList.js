@@ -21,15 +21,13 @@ const customStyles = {
     paddingLeft: 10,
     borderRadius: '2px',
     textAlign: 'center',
-    fontSize: '1em',
-    fontWeight: 'bold',
+    fontSize: '12px',
   }),
   control: (provided) => ({ // 보이는 부분 (default=최신순)
     ...provided,
     borderRadius: '10px',
     textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: '12px',
+    fontSize: '13px',
   }),
 };
 
@@ -46,8 +44,8 @@ const QuestionList = () => {
     call("/api/question","GET",null)
     .then((response) => {
       if (response) {
-        setItems(response.data);
-        console.log(response.data);
+        setItems(response);
+        console.log(response);
       }
     })
     .catch((error) => {
@@ -59,9 +57,10 @@ const QuestionList = () => {
   const postQuestion = (item) => {
     call("/api/question", "POST", item)
     .then((response) => {
-      setItems(response.data)
-      console.log(response.data);
-    })
+      if(response) {
+        setItems([...items, response])
+      }
+    }) 
     .catch((error) => {
       console.error(error);
     });
