@@ -5,7 +5,6 @@ import DiaryDetail from "./feat_diary/DiaryDetail";
 import DiaryCalendar from "./feat_diary/DiaryCalendar";
 import AddDiary from "./feat_diary/AddDiary";
 import QuestionList from "./question/QuestionList";
-import AddQuestion from "./question/AddQuestion";
 import Navbar from "./Navbar";
 
 function App() {
@@ -20,8 +19,7 @@ function App() {
       <Route path="/diary/add" element={<AddDiary />} />
 
       {/* 1일 1질문 */}
-      <Route path="/question/list" element={<QuestionList />} />
-      <Route path="/question/add" element={<AddQuestion />} />
+      <Route path="/question" element={<QuestionList />} />
 
     </Routes>
     </div>
