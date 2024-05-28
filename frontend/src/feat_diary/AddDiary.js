@@ -22,7 +22,7 @@ const AddDiary = () => {
     content: oldDiary?.content || "",
     iconId: null
   });
-
+  
   const stringDate = location.state?.stringDate;
   const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
   const weekday = weekdays[date.getDay()];
