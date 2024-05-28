@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import DiaryDetail from "./feat_diary/DiaryDetail";
 import DiaryCalendar from "./feat_diary/DiaryCalendar";
 import AddDiary from "./feat_diary/AddDiary";
-import QuestionHome from "./question/QuestionHome";
+import QuestionHome from "./feat_question/QuestionHome";
 import Navbar from "./Navbar";
 import ProfileList from "./feat_profile/ProfileList";
 import ProfileDetail from "./feat_profile/ProfileDetail";
