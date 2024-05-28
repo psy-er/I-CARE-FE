@@ -9,7 +9,7 @@ export function call(api, method, request) {
   if(accessToken && accessToken !== null) {
     headers.append("Authorization", "Bearer " + accessToken);
   }*/
-  headers.append("Authorization", "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsc2FAbmF2ZXIiLCJpc3MiOiJzb2NpYWwgTG9naW4iLCJpYXQiOjE3MTY4NzgyMjgsImV4cCI6MTcxNjk2NDYyOCwiaWQiOiIyYzk0OTNmNzhmYmRlYTg1MDE4ZmJkZWFhYTI4MDAwMCJ9.nQbXvc99BfbLiiHVC5obNCsXIKY36alkHTvQX1tGA7wkqZcca6yM_TAstWVPpQLxE1JL7fxjuMOY9j78c7i4Dw");
+  headers.append("Authorization", "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsc2EiLCJpc3MiOiJzb2NpYWwgTG9naW4iLCJpYXQiOjE3MTY4OTQ2MjgsImV4cCI6MTcxNjk4MTAyOCwiaWQiOiI0MDI4ODA4NjhmYmVlNGMwMDE4ZmJlZTRlNDUxMDAwMCJ9.PNna4CSiNGf8C13vKrmC1tZMFtRJKC9Rnr6AIUm790C6nMrEVE9YItoQCMZhW9SWzfiIw6p-iqPfCVh_HPK_0A");
 
   let options = {
     headers: headers,
