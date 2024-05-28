@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import DiaryDetail from "./feat_diary/DiaryDetail";
 import DiaryCalendar from "./feat_diary/DiaryCalendar";
 import AddDiary from "./feat_diary/AddDiary";
-import QuestionList from "./question/QuestionList";
+import QuestionHome from "./question/QuestionHome";
 import Navbar from "./Navbar";
 import ProfileList from "./feat_profile/ProfileList";
 import ProfileDetail from "./feat_profile/ProfileDetail";
@@ -25,7 +25,7 @@ function App() {
       <Route path="/profile/detail" element={<ProfileDetail />} />
 
       {/* 1일 1질문 */}
-      <Route path="/question" element={<QuestionList />} />
+      <Route path="/question" element={<QuestionHome />} />
 
     </Routes>
     </div>
