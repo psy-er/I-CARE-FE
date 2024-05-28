@@ -8,6 +8,8 @@ import QuestionList from "./question/QuestionList";
 import Navbar from "./Navbar";
 import ProfileList from "./feat_profile/ProfileList";
 import ProfileDetail from "./feat_profile/ProfileDetail";
+import Login from "./feat_login/Login";
+import SignUp from "./feat_login/SignUp";
 
 function App() {
   return (
@@ -27,11 +29,20 @@ function App() {
       {/* 1일 1질문 */}
       <Route path="/question" element={<QuestionList />} />
 
+      {/* 로그인 */}
+      <Route path="/login" element={<Login />} />
+
+      {/* 회원가입 */}
+      <Route path="/signup" element={<SignUp />} />
+
     </Routes>
     </div>
     <Navbar />
     </div>
   );
+
+  
+
 }
 
 export default App;
