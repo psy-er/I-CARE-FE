@@ -8,7 +8,12 @@ export function call(api, method, request) {
   const accessToken = localStorage.getItem("ACCESS_TOKEN");
   if(accessToken) {
     headers.append("Authorization", "Bearer " + accessToken);
+<<<<<<< HEAD
   }
+=======
+  }*/
+  headers.append("Authorization", "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsc2EiLCJpc3MiOiJzb2NpYWwgTG9naW4iLCJpYXQiOjE3MTY4OTQ2MjgsImV4cCI6MTcxNjk4MTAyOCwiaWQiOiI0MDI4ODA4NjhmYmVlNGMwMDE4ZmJlZTRlNDUxMDAwMCJ9.PNna4CSiNGf8C13vKrmC1tZMFtRJKC9Rnr6AIUm790C6nMrEVE9YItoQCMZhW9SWzfiIw6p-iqPfCVh_HPK_0A");
+>>>>>>> 7574bed3553c7e6fb5e34a1213bd05dcad9d03b6
 
   let options = {
     headers: headers,
