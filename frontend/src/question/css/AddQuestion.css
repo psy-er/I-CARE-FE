@@ -1,4 +1,8 @@
 .uploadIcon {
     padding-top:3px;
-    color: #1a1a1a;
+    color: black;
+    cursor: pointer; /* 손가락 모양 커서 */
 }
+
+/* .inputAdornment:hover .uploadIcon {
+  } */
