@@ -61,7 +61,7 @@ const AddQuestion = (props) => {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              {isHovered ? (
+              {isHovered ? ( // 마우스 올렸을 때 아이콘 아래로 
                 <KeyboardArrowDownIcon onClick={onButtonClick} className="uploadIcon" />
               ) : (
                 <KeyboardArrowRightIcon className="uploadIcon" />
