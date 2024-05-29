@@ -3,7 +3,6 @@ import { InputAdornment, TextField } from "@mui/material";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import "./css/AddQuestion.css";
-import MAddQuestion from "./modal/MAddQuestion";
 
 const AddQuestion = (props) => {
     const date = new Date(); // 날짜 받아오기 
@@ -76,8 +75,7 @@ const AddQuestion = (props) => {
         <div>{today}</div>
         <div>{text.length}/50</div>
     </div>
-
-      <MAddQuestion  />
+    
     </div>
   );
 }
