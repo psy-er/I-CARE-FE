@@ -9,9 +9,9 @@ import SearchQuestion from "./SearchQuestion";
 import Header from "../Header";
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
-import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined';
+// import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined';
 import { useNavigate } from "react-router-dom";
-import MAddQuestion from "./modal/MAddQuestion";
+// import MAddQuestion from "./modal/MAddQuestion";
 
 const options = [
   { value: '오래된순', label: '오래된순' },
@@ -39,7 +39,7 @@ const customStyles = {
 const QuestionHome = () => {
   const [items, setItems] = useState([]);
   const [sortOrder, setSortOrder] = useState(options[1]); // 기본값을 최신순으로 설정
-  const [modalOpen, setModalOpen] = useState(false);  
+  // const [modalOpen, setModalOpen] = useState(false);  
   
 
   const handleSortChange = (selectedOption) => {
@@ -50,13 +50,10 @@ const QuestionHome = () => {
     const childId = "temporary-childId";
     call(`/api/question?childId=${childId}`,"GET",null)
     .then((response) => {
-      if (!response.ok) {
-        return response.text().then(text => { throw new Error(text) });
+      if (response) {
+        setItems(response);
+        console.log(response);
       }
-      return response.json();
-    })
-    .then((responseData) => {
-      setItems([...items, responseData]);
     })
     .catch((error) => {
       console.error("Error fetching items", error);
@@ -64,30 +61,22 @@ const QuestionHome = () => {
   },[]);
 
   //추가 
-const postQuestion = (item) => {
-  const childId = "temporary-childId";
-  call(`/api/question?childId=${childId}`, "POST", item)
+  const postQuestion = (item) => {
+    const childId = "temporary-childId";
+    call(`/api/question?childId=${childId}`, "POST", item)
     .then((response) => {
-      if (!response.ok) {
-        // response가 ok가 아닌 경우 예외를 발생시킴
-        setModalOpen(true);
-        return response.text().then(text => { throw new Error(text) });
+      if(response) {
+        setItems([...items, response])
       }
-      return response.json();
-    })
-    .then((responseData) => {
-      setItems([...items, responseData]);
-    })
+    }) 
     .catch((error) => {
-      setModalOpen(true);
-      console.error("Error: ", error.message); // 에러 메시지를 출력
-      setModalOpen(true);
+      console.error(error);
     });
-};
-
-  const handleCloseModal = () => {
-    setModalOpen(false);
   };
+
+  // const handleCloseModal = () => {
+  //   setModalOpen(false);
+  // };
 
 
   //리스트 불러오기 (최신 순)
@@ -187,8 +176,8 @@ const postQuestion = (item) => {
           {questionList}  
       </div>
 
-      <MAddQuestion
-        isOpen={modalOpen} onClose={handleCloseModal} />
+      {/* <MAddQuestion
+        isOpen={modalOpen} onClose={handleCloseModal} /> */}
 
     </div>
   );
