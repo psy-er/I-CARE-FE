@@ -6,6 +6,7 @@ import AddQuestion from "./AddQuestion";
 import { call } from "../api/ApiService";
 import QuestionList from "./QuestionList";
 import SearchQuestion from "./SearchQuestion";
+import Header from "../Header";
 
 const options = [
   { value: '오래된순', label: '오래된순' },
@@ -79,7 +80,7 @@ const QuestionHome = () => {
       </List>
   );
 
-    //리스트 불러오기 (오래된 순)
+  //리스트 불러오기 (오래된 순)
   let questionOldList = items.length > 0 && (
       <List>
         {items.reverse().map((item, index) => (
@@ -114,11 +115,16 @@ const QuestionHome = () => {
 
   return (
     <div>
+
+      <Header 
+       title={"일일문답"}
+       setting
+       profile
+      />
+
       <div className="todayInput">어떤 놀이가 제일 좋아?</div>
       
       <AddQuestion postQuestion={postQuestion}/> {/* 추가부분 */}
-      
-      <div className="line" />
 
       <div className="search"> 
         <Select
@@ -136,6 +142,7 @@ const QuestionHome = () => {
       <div className="questionList">
           {questionList}  
       </div>
+
     </div>
   );
 }
