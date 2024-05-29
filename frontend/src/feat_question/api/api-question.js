@@ -11,8 +11,8 @@
 
 // export const postQuestion = (question) => {
 //     // questionId는 자동 생성
-//     const questionId = "temporary-questionId";
-//   return call(`/api/question?questionId=${questionId}`, "POST", question)
+//     const childId = "temporary-childId";
+//   return call(`/api/question?childId=${childId}`, "POST", question)
 //     .then((response) => {
 //       if(response) {
 //         return response;
