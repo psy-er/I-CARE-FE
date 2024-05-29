@@ -7,6 +7,10 @@ import { call } from "../api/ApiService";
 import QuestionList from "./QuestionList";
 import SearchQuestion from "./SearchQuestion";
 import Header from "../Header";
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
+import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined';
+import { useNavigate } from "react-router-dom";
 
 const options = [
   { value: '오래된순', label: '오래된순' },
@@ -113,13 +117,36 @@ const QuestionHome = () => {
     });
 }
 
+    const navigate = useNavigate();
+
+    const goBack = () => { // 뒤로가기
+        navigate(-1);
+    };
+
   return (
     <div>
 
-      <Header 
-       title={"일일문답"}
-       setting
-       profile
+      {/* 설정 | title | 프로필 */}
+      <Header
+        title={"일일문답1"}
+        leftChild = {
+          <SettingsOutlinedIcon 
+            sx={{ cursor: 'pointer' }}
+            onClick={() => navigate('/')}/>} //setting으로 이동 - 추후에 링크 수정
+        rightChild={
+          <PermIdentityOutlinedIcon
+             sx={{ cursor: 'pointer' }}
+             onClick={() => navigate('/')}/>} //profile으로 이동 - 추후에 링크 수정
+      />
+
+      
+      {/* 뒤로가기 | title | none */}
+      <Header
+        title={"일일문답2"}
+        leftChild={<ArrowBackIosOutlinedIcon 
+          onClick={goBack} //뒤로 이동
+          sx={{ cursor: 'pointer' }}/>
+          }
       />
 
       <div className="todayInput">어떤 놀이가 제일 좋아?</div>
