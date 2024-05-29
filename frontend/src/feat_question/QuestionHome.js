@@ -119,9 +119,9 @@ const QuestionHome = () => {
 
     const navigate = useNavigate();
 
-    const goBack = () => { // 뒤로가기
-        navigate(-1);
-    };
+    // const goBack = () => { // 뒤로가기
+    //     navigate(-1);
+    // };
 
   return (
     <div>
@@ -140,14 +140,14 @@ const QuestionHome = () => {
       />
 
       
-      {/* 뒤로가기 | title | none */}
+      {/* 뒤로가기 | title | none
       <Header
         title={"일일문답2"}
         leftChild={<ArrowBackIosOutlinedIcon 
           onClick={goBack} //뒤로 이동
           sx={{ cursor: 'pointer' }}/>
           }
-      />
+      /> */}
 
       <div className="todayInput">어떤 놀이가 제일 좋아?</div>
       
