@@ -67,8 +67,8 @@ const QuestionHome = () => {
     });
   };
 
-  //리스트 불러오기 (최신, 오래된 순)
-  let questionList = items.length > 0 && (
+  //리스트 불러오기 (최신 순)
+  let questionNewList = items.length > 0 && (
       <List>
         {items.map((item, index) => (
           <React.Fragment key={item.questionId}>
@@ -79,6 +79,21 @@ const QuestionHome = () => {
         ))}
       </List>
   );
+
+    //리스트 불러오기 (오래된 순)
+  let questionOldList = items.length > 0 && (
+      <List>
+        {items.reverse().map((item, index) => (
+          <React.Fragment key={item.questionId}>
+          <QuestionList item={item}
+          />
+          {index < items.length - 1 && <Divider />}
+          </React.Fragment> // 구분선 추가
+        ))}
+      </List>
+  );
+
+  const questionList = sortOrder === options[1] ? questionNewList : questionOldList;
   
 
   //검색 - 엔터 & 돋보기
@@ -125,7 +140,9 @@ const QuestionHome = () => {
       
       <div>
         이전 질문
-        <h5>{questionList}</h5>
+        <h5 className="questionList">
+          {questionList}  
+        </h5>
       </div>
 
     </div>
