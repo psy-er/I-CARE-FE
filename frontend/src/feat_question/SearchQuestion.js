@@ -2,6 +2,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { TextField } from "@mui/material";
 import React, { useState } from "react";
 import InputAdornment from '@mui/material/InputAdornment';
+import "./css/SearchQuestion.css";
 
 const SearchQuestion = (props) => {
     const [item, setItem] = useState({
@@ -52,7 +53,7 @@ const SearchQuestion = (props) => {
         size="small"
         InputProps={{
           style: { fontSize: 11, marginTop:'2px', paddingTop:'2px' }, // placeholder와 입력 텍스트의 크기 설정
-          startAdornment: (
+          endAdornment: (
             <InputAdornment position="start">
               <SearchIcon className="searchIcon" onClick={onButtonClick}/>
             </InputAdornment>
