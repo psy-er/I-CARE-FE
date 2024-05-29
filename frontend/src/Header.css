@@ -21,12 +21,13 @@
     font-weight: bold;
 }
 
-.Header .header_setting {
+.Header .header_left {
     width: 25%;
     justify-content: start;
 }
 
-.Header .header_profile {
+.Header .header_right {
     width: 25%;
     justify-content: end;
 }
+
