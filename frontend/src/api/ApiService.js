@@ -1,14 +1,15 @@
-import { API_BASE_URL } from "../api-config";
+import { API_BASE_URL } from "./api-config";
 
 export function call(api, method, request) {
   let headers = new Headers({
     "Content-Type": "application/json",
   });
-  /*
+  
   const accessToken = localStorage.getItem("ACCESS_TOKEN");
-  if(accessToken && accessToken !== null) {
+  if(accessToken) {
     headers.append("Authorization", "Bearer " + accessToken);
-  }*/
+  }
+
 
   let options = {
     headers: headers,
@@ -21,15 +22,27 @@ export function call(api, method, request) {
   }
   return fetch(options.url, options).then((response) => {
     if(response.status === 200) {
-      return response.json();
-    } /*else if(response.status === 403) {
+      if(response.url.includes("image")) {
+        return response.blob().then(blob => {
+          const reader = new FileReader();
+          return new Promise((resolve, reject) => {
+            reader.onloadend = () => resolve(reader.result);
+            reader.onerror = reject;
+            reader.readAsDataURL(blob);
+          });
+        });
+      } else {
+        return response.json();
+      }
+    } else if(response.status === 403) {
       window.location.href = "/login"; // redirect
     } else {
       Promise.reject(response);
       throw Error(response);
-    }*/
+    }
   }).catch((error) => {
     console.log("http error");
     console.log(error);
   });
+
 }

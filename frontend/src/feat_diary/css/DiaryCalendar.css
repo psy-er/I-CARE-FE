@@ -1,0 +1,90 @@
+.calendar {
+  border: 1px solid #ddd;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 40px;
+  box-shadow: 0 0 5px 0 rgba(0,0,0,0.2);
+}
+
+.month {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 15px;
+  margin: 10px;
+}
+
+.month button {
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.month button:hover {
+  background-color: #eee;
+}
+
+.month p {
+  margin: 0 40px;
+}
+
+.week {
+  display: flex;
+  justify-content: center;
+  margin: 5px 0;
+  font-weight: bold;
+}
+
+.days {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 10px;
+}
+
+/*개별 날짜*/
+.day {
+  width: 30px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  background-color: #fff;
+  border: none;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+/*현재 날짜*/
+.day.today {
+  background-color: #def;
+  color: #00f;
+  border-radius: 10px;
+}
+
+/*다른 월 날짜*/
+.day.disabled {
+  opacity: 0.2;
+}
+
+.day:hover {
+  font-weight: bold;
+  border-radius: 10px;
+  background-color: #eee;
+}
+
+.icon {
+  width: 30px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  margin-bottom: 5px;
+}
+
+.icon.disabled {
+  opacity: 0.2;
+}
