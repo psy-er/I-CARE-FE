@@ -11,7 +11,7 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
 // import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined';
 import { useNavigate } from "react-router-dom";
-// import MAddQuestion from "./modal/MAddQuestion";
+import MSearchQuestion from "./modal/MSearchQuestion";
 
 const options = [
   { value: '오래된순', label: '오래된순' },
@@ -39,12 +39,16 @@ const customStyles = {
 const QuestionHome = () => {
   const [items, setItems] = useState([]);
   const [sortOrder, setSortOrder] = useState(options[1]); // 기본값을 최신순으로 설정
-  // const [modalOpen, setModalOpen] = useState(false);  
+  const [modalOpen, setModalOpen] = useState(false);
   
 
   const handleSortChange = (selectedOption) => {
     setSortOrder(selectedOption);
   }; //오래된순 <-> 최신순 변경
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
 
   useEffect(() => { 
     const childId = "temporary-childId";
@@ -71,7 +75,18 @@ const QuestionHome = () => {
     }) 
   };
 
-
+  //검색
+  const searchQuestion = (item) => {
+    const childId = "temporary-childId";
+    call(`/api/question/search?childId=${childId}&output=${item.output}`, "GET", null)
+    .then((response) => {
+        if (response && response.length > 0) {
+          setItems(response);
+        } else {
+          setModalOpen(true);
+        }
+    })
+  }
 
 
   //리스트 불러오기 (최신 순)
@@ -101,24 +116,6 @@ const QuestionHome = () => {
   );
 
   const questionList = sortOrder === options[1] ? questionNewList : questionOldList;
-  
-  //검색
-  const searchQuestion = (item) => {
-    const childId = "temporary-childId";
-    call(`/api/question/search?childId=${childId}&output=${item.output}`, "GET", null)
-    .then((response) => {
-        if (response) {
-          console.log(item.output);
-          setItems(response);
-        } else {
-            console.log(item.output);
-            console.error("Empty response received");
-        }
-    })
-    .catch((error)=>{
-        console.error("Failed to retrieve items:", error);
-    });
-}
 
   const navigate = useNavigate();
 
@@ -157,6 +154,7 @@ const QuestionHome = () => {
       <AddQuestion postQuestion={postQuestion}/>
 
       <div className="search"> 
+
         <Select
           value={sortOrder}
           onChange={handleSortChange}
@@ -164,7 +162,12 @@ const QuestionHome = () => {
           styles={customStyles}
           className="selectBox"
         />
+
+        
         <SearchQuestion searchQuestion={searchQuestion}/> {/* 검색부분 */}
+        <MSearchQuestion 
+          isOpen={modalOpen} onClose={handleCloseModal} /> {/* 모달부분 */}
+        
       </div>
       
       <div className="questionList">

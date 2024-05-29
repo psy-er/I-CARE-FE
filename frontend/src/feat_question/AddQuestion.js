@@ -4,6 +4,7 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import "./css/AddQuestion.css";
 import MAddQuestion from "./modal/MAddQuestion";
+// import MAddCheckQuestion from "./modal/MAddCheckQuestion";
 
 const AddQuestion = (props) => {
     const date = new Date(); // 날짜 받아오기 
@@ -14,7 +15,8 @@ const AddQuestion = (props) => {
     const [isHovered, setIsHovered] = useState(false);
     const [isOutputed, setIsOutputed] = useState(false); //오늘 답변 여부 check
 
-    const [modalOpen, setModalOpen] = useState(false);  // 답변 했을 시 modal 창
+    const [modalAddOpen, setModalAddOpen] = useState(false);  // 이미 답변 했을 시 modal 창
+    // const [modalCheckOpen, setModalCheckOpen] = useState(false);
 
     const handleMouseEnter = () => {
       setIsHovered(true);
@@ -43,18 +45,25 @@ const AddQuestion = (props) => {
       setText(value);
     };
 
-    const handleCloseModal = () => {
-      setModalOpen(false);
+    // 이미 작성함
+    const handleCloseAddModal = () => {
+      setModalAddOpen(false);
     };
+
+    // 정말 등록할 건지 check
+    // const handleCloseCheckModal = () => {
+    //   setModalCheckOpen(false);
+    // };
 
     //button 동작 함수 (v 버튼을 눌러야 추가가 된다.)
     const onButtonClick = () => {
-      if (isOutputed) {
+      if (isOutputed) { // 이미 작성된 경우에는 모달
         setQuestion({output: ""});
         setText("");
-        setModalOpen(true); // 이미 작성된 경우에는 모달
+        setModalAddOpen(true); // Add 모달
       }
-      else {
+      else { // 작성 안 됨
+        // setModalCheckOpen(true); //정말 작성할 건지
         postQuestion(question);
         console.log(question);
         setQuestion({output: ""});
@@ -102,7 +111,10 @@ const AddQuestion = (props) => {
     </div>
 
     <MAddQuestion
-        isOpen={modalOpen} onClose={handleCloseModal} />
+        isOpen={modalAddOpen} onClose={handleCloseAddModal} />
+
+    {/* <MAddCheckQuestion
+        isOpen={modalCheckOpen} onClose={handleCloseCheckModal} /> */}
     
     </div>
   );
