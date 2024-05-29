@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./css/QuestionHome.css";
 import Select from 'react-select';
-import SearchIcon from '@mui/icons-material/Search';
-import { Divider, List, TextField } from "@mui/material";
-import InputAdornment from '@mui/material/InputAdornment';
+import { Divider, List } from "@mui/material";
 import AddQuestion from "./AddQuestion";
 import { call } from "../api/ApiService";
 import QuestionList from "./QuestionList";
+import SearchQuestion from "./SearchQuestion";
 
 const options = [
   { value: '오래된순', label: '오래된순' },
@@ -95,21 +94,33 @@ const QuestionHome = () => {
 
   const questionList = sortOrder === options[1] ? questionNewList : questionOldList;
   
+  //검색
+  const searchQuestion = (item) => {
+    const childId = "temporary-childId";
+    call(`/api/question/search?childId=${childId}&output=${item.output}`, "GET", null)
+    .then((response) => {
+        if (response) {
+          console.log(item.output);
+          setItems(response);
+        } else {
+            console.log(item.output);
+            console.error("Empty response received");
+        }
+    })
+    .catch((error)=>{
+        console.error("Failed to retrieve items:", error);
+    });
+}
 
-  //검색 - 엔터 & 돋보기
-
-
-  
   return (
     <div>
       <div className="todayInput">어떤 놀이가 제일 좋아?</div>
       
       <AddQuestion postQuestion={postQuestion}/> {/* 추가부분 */}
       
-      <div className="line"></div> 
+      <div className="line" />
 
       <div className="search"> 
-      
         <Select
           value={sortOrder}
           onChange={handleSortChange}
@@ -118,33 +129,13 @@ const QuestionHome = () => {
           className="selectBox"
         />
 
-        <TextField 
-          className="searchBox" 
-          type="text" 
-          placeholder="문답을 검색해보세요." 
-          variant="outlined"
-          style={{ 
-            width: '180px',
-          }}
-          size="small"
-          InputProps={{
-            style: { fontSize: 11, marginTop:'2px', paddingTop:'2px' }, // placeholder와 입력 텍스트의 크기 설정
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchIcon className="searchIcon" />
-              </InputAdornment>
-            ),
-          }}
-          />
+        <SearchQuestion searchQuestion={searchQuestion}/> {/* 검색부분 */}
+
       </div>
       
-      <div>
-        이전 질문
-        <h5 className="questionList">
+      <div className="questionList">
           {questionList}  
-        </h5>
       </div>
-
     </div>
   );
 }
