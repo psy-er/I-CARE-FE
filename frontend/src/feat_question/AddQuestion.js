@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { InputAdornment, TextField } from "@mui/material";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import "./css/AddQuestion.css";
+import MAddQuestion from "./modal/MAddQuestion";
 
 const AddQuestion = (props) => {
     const date = new Date(); // 날짜 받아오기 
-    const today = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`; // 오늘 날짜
+    const Stringdate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`; // 오늘 날짜
     const [text, setText] = useState(''); // 글자수
     const [question, setQuestion] = useState({output:""});
     const postQuestion = props.postQuestion;
     const [isHovered, setIsHovered] = useState(false);
+    const [isOutputed, setIsOutputed] = useState(false); //오늘 답변 여부 check
+
+    const [modalOpen, setModalOpen] = useState(false);  // 답변 했을 시 modal 창
 
     const handleMouseEnter = () => {
       setIsHovered(true);
@@ -19,8 +23,16 @@ const AddQuestion = (props) => {
     const handleMouseLeave = () => {
       setIsHovered(false);
     };
+
+    //답변 여부 검사
+    useEffect(() => {
+      const outputed = localStorage.getItem(`outputed_${Stringdate}`);
+      if (outputed) {
+        setIsOutputed(true); // 답변을 함
+      }
+    },[Stringdate]);
     
-    //글자수
+    //글자 수 count
     const handleChange = (e) => {
       console.log(question);
       const { name, value } = e.target;
@@ -31,12 +43,25 @@ const AddQuestion = (props) => {
       setText(value);
     };
 
-    //button 동작 함수(+버튼 클릭)
+    const handleCloseModal = () => {
+      setModalOpen(false);
+    };
+
+    //button 동작 함수 (v 버튼을 눌러야 추가가 된다.)
     const onButtonClick = () => {
-      postQuestion(question);
-      console.log(question);
-      setQuestion({output: ""});
-      setText("");
+      if (isOutputed) {
+        setQuestion({output: ""});
+        setText("");
+        setModalOpen(true); // 이미 작성된 경우에는 모달
+      }
+      else {
+        postQuestion(question);
+        console.log(question);
+        setQuestion({output: ""});
+        setText("");
+        setIsOutputed(true);
+        localStorage.setItem(`outputed_${Stringdate}`, "true");
+      }
     };
 
   return (
@@ -72,9 +97,12 @@ const AddQuestion = (props) => {
       />
 
     <div className="date"> 
-        <div>{today}</div>
+        <div>{Stringdate}</div>
         <div>{text.length}/50</div>
     </div>
+
+    <MAddQuestion
+        isOpen={modalOpen} onClose={handleCloseModal} />
     
     </div>
   );

@@ -66,17 +66,12 @@ const QuestionHome = () => {
     call(`/api/question?childId=${childId}`, "POST", item)
     .then((response) => {
       if(response) {
-        setItems([...items, response])
+        setItems([...items, response]);
       }
     }) 
-    .catch((error) => {
-      console.error(error);
-    });
   };
 
-  // const handleCloseModal = () => {
-  //   setModalOpen(false);
-  // };
+
 
 
   //리스트 불러오기 (최신 순)
@@ -175,9 +170,6 @@ const QuestionHome = () => {
       <div className="questionList">
           {questionList}  
       </div>
-
-      {/* <MAddQuestion
-        isOpen={modalOpen} onClose={handleCloseModal} /> */}
 
     </div>
   );
