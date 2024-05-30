@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import './css/ProfileDetail.css';
+import Header from "../Header";
 
 const ProfileDetail = () => {
   const location = useLocation();
@@ -10,6 +11,7 @@ const ProfileDetail = () => {
 
   return (
     <div className="profileDetail">
+      <Header title="워드클라우드" type="back" />
       <div className="date">
         {date.getFullYear()}년 {date.getMonth() + 1}월 {date.getDate()}일({weekday})
       </div>
