@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getProfileList } from "./api/api-profile";
 import './css/ProfileList.css';
+import Header from "../Header";
 import Profile from "./Profile";
 import AddProfile from "./AddProfile";
 
@@ -47,6 +48,7 @@ const ProfileList = () => {
 
   return (
     <div className="profileList">
+      <Header title="워드클라우드" type="home" />
       <div className="sort">
         <select onChange={handleSort} value={sort}>
           <option value="latest">최신순</option>
