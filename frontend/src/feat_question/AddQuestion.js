@@ -1,20 +1,42 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { InputAdornment, TextField } from "@mui/material";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import "./css/AddQuestion.css";
 import MAddQuestion from "./modal/MAddQuestion";
+import MAddCheckQuestion from "./modal/MAddCheckQuestion";
 
 const AddQuestion = (props) => {
     const date = new Date(); // 날짜 받아오기 
     const Stringdate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`; // 오늘 날짜
+
     const [text, setText] = useState(''); // 글자수
     const [question, setQuestion] = useState({output:""});
     const postQuestion = props.postQuestion;
     const [isHovered, setIsHovered] = useState(false);
-    const [isOutputed, setIsOutputed] = useState(false); //오늘 답변 여부 check
 
-    const [modalOpen, setModalOpen] = useState(false);  // 답변 했을 시 modal 창
+    const [modalAddOpen, setModalAddOpen] = useState(false);  // 이미 답변 했을 시 modal 창
+    const [modalCheckOpen, setModalCheckOpen] = useState(false);
+
+    //글자 수 count
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setQuestion({
+          ...question,
+          [name]: value
+      });
+      setText(value);
+    };
+
+    // 이미 작성함
+    const handleCloseAddModal = () => {
+      setModalAddOpen(false);
+    };
+
+    // 정말 작성?
+    const handleCloseCheckModal = () => {
+      setModalCheckOpen(false);
+    };
 
     const handleMouseEnter = () => {
       setIsHovered(true);
@@ -24,43 +46,20 @@ const AddQuestion = (props) => {
       setIsHovered(false);
     };
 
-    //답변 여부 검사
-    useEffect(() => {
-      const outputed = localStorage.getItem(`outputed_${Stringdate}`);
-      if (outputed) {
-        setIsOutputed(true); // 답변을 함
-      }
-    },[Stringdate]);
-    
-    //글자 수 count
-    const handleChange = (e) => {
-      console.log(question);
-      const { name, value } = e.target;
-      setQuestion({
-          ...question,
-          [name]: value
-      });
-      setText(value);
-    };
-
-    const handleCloseModal = () => {
-      setModalOpen(false);
-    };
-
     //button 동작 함수 (v 버튼을 눌러야 추가가 된다.)
     const onButtonClick = () => {
-      if (isOutputed) {
+      if (Stringdate===localStorage.getItem('Stringdate')) { // 이미 작성된 경우에는 모달
         setQuestion({output: ""});
         setText("");
-        setModalOpen(true); // 이미 작성된 경우에는 모달
+        setModalAddOpen(true); // Add 모달
       }
-      else {
-        postQuestion(question);
-        console.log(question);
+       else { // 작성 안 됨
+        // setModalCheckOpen(true); //정말 작성할 건지
+        postQuestion(question); // 추가하고
+        localStorage.setItem('Stringdate',Stringdate); // update
         setQuestion({output: ""});
         setText("");
-        setIsOutputed(true);
-        localStorage.setItem(`outputed_${Stringdate}`, "true");
+        setModalCheckOpen(true);
       }
     };
 
@@ -102,7 +101,10 @@ const AddQuestion = (props) => {
     </div>
 
     <MAddQuestion
-        isOpen={modalOpen} onClose={handleCloseModal} />
+        isOpen={modalAddOpen} onClose={handleCloseAddModal} />
+
+    <MAddCheckQuestion
+        isOpen={modalCheckOpen} onClose={handleCloseCheckModal} />
     
     </div>
   );
