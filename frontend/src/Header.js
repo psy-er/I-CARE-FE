@@ -6,8 +6,6 @@ import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
 import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined';
 
 const Header = (props) => {
-    const leftChild = props.leftChild;
-    const rightChild = props.rightChild;
     const title = props.title;
     const type = props.type;
     const navigate = useNavigate();
@@ -45,14 +43,6 @@ const Header = (props) => {
             </div>
         )
     }
-
-    return (
-        <div className="Header">
-            <div className="header_left">{leftChild}</div>
-            <div className="header_title">{title} 임시</div>
-            <div className="header_right">{rightChild}</div>
-        </div>
-    );
 };
 
 export default Header;
