@@ -1,14 +1,16 @@
 import React from "react";
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import DiaryDetail from "./feat_diary/DiaryDetail";
 import DiaryCalendar from "./feat_diary/DiaryCalendar";
 import AddDiary from "./feat_diary/AddDiary";
-import QuestionList from "./question/QuestionList";
-import AddQuestion from "./question/AddQuestion";
+import QuestionHome from "./feat_question/QuestionHome";
 import Navbar from "./Navbar";
 import ProfileList from "./feat_profile/ProfileList";
 import ProfileDetail from "./feat_profile/ProfileDetail";
+import Login from "./feat_login/Login";
+import SignUp from "./feat_login/SignUp";
+import Splash from "./feat_login/Splash";
 
 function App() {
   return (
@@ -26,14 +28,27 @@ function App() {
       <Route path="/profile/detail" element={<ProfileDetail />} />
 
       {/* 1일 1질문 */}
-      <Route path="/question/list" element={<QuestionList />} />
-      <Route path="/question/add" element={<AddQuestion />} />
+      <Route path="/question" element={<QuestionHome />} />
+
+      {/* 로그인 */}
+      <Route path="/login" element={<Login />} />
+
+      {/* 회원가입 */}
+      <Route path="/signup" element={<SignUp />} />
+
+      {/* 스플래시 */}
+      <Route path="/" element={<Navigate to="/splash" />} />
+      <Route path="/splash" element={<Splash />} />
 
     </Routes>
     </div>
+
     <Navbar />
     </div>
   );
+
+  
+
 }
 
 export default App;

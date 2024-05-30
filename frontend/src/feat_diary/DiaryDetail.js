@@ -3,6 +3,7 @@ import './css/DiaryDetail.css';
 import { useLocation } from "react-router-dom";
 import { getIconFont } from "./api/api-icon";
 import MEditDeleteDiary from "./modal/MEditDeleteDiary";
+import Header from "../Header";
 
 const DiaryDetail = () => {
   const location = useLocation();
@@ -45,6 +46,7 @@ const DiaryDetail = () => {
 
   return (
     <div className="detail">
+      <Header title="공감일기" type="back" />
       <div className="date">
         {stringDate} {weekday}요일
       </div>

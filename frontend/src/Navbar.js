@@ -30,9 +30,9 @@ const Navbar = () => {
       <Link to="/second" className="nav-link" style={{ textDecoration: 'none', fontSize:'0.7rem'}}>
         <div>
           {isSecondLink ? (
-          <img src="/bot.png" alt="실시간 영상" /> //선택 했을 때
+          <img src="/video.png" alt="실시간 영상" /> //선택 했을 때
           ) : (
-          <img src="/bot_un.png" alt="실시간 영상" /> // 선택 안 했을 때
+          <img src="/video_un.png" alt="실시간 영상" /> // 선택 안 했을 때
           )}
           <div className={isSecondLink ? 'active' : 'inactive'}>실시간 영상</div>
         </div>
@@ -63,7 +63,7 @@ const Navbar = () => {
       </Link>
 
       {/* 1일 1문답 */}
-      <Link to="/question/list" className="nav-link" style={{ textDecoration: 'none', fontSize:'0.7rem'}}>
+      <Link to="/question" className="nav-link" style={{ textDecoration: 'none', fontSize:'0.7rem'}}>
         <div>
           {isQuestionLink ? (
           <img className="big_image" src="/question.png" alt="일일문답" /> //선택 했을 때
