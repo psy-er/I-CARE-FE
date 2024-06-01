@@ -1,0 +1,25 @@
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f8f8f8;
+}
+
+.app-container {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.splash-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f8f8f8;
+}
+
+.splash-image {
+  max-width: 100%;
+  height: auto;
+}
