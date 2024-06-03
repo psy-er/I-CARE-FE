@@ -5,7 +5,7 @@ export function signin(userDTO) {
         .then((reponse) => {
             if( reponse.token ) {
                 localStorage.setItem("ACCESS_TOKEN", reponse.token);
-                window.location.href = "/";
+                window.location.href = "/first"; // /chatbot으로 위치 변경하기
             }
         });
 }
