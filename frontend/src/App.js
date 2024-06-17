@@ -5,7 +5,6 @@ import DiaryDetail from "./feat_diary/DiaryDetail";
 import DiaryCalendar from "./feat_diary/DiaryCalendar";
 import AddDiary from "./feat_diary/AddDiary";
 import QuestionHome from "./feat_question/QuestionHome";
-import Navbar from "./Navbar";
 import ProfileList from "./feat_profile/ProfileList";
 import ProfileDetail from "./feat_profile/ProfileDetail";
 import Login from "./feat_login/Login";
@@ -14,9 +13,6 @@ import Splash from "./feat_login/Splash";
 
 function App() {
   return (
-    <div className="app-wrapper">
-    <div className="app-container">
-    
     <Routes>
       {/* 일기 */}
       <Route path="/diary" element={<DiaryCalendar />} />
@@ -41,14 +37,7 @@ function App() {
       <Route path="/splash" element={<Splash />} />
 
     </Routes>
-    </div>
-
-    <Navbar />
-    </div>
   );
-
-  
-
 }
 
 export default App;

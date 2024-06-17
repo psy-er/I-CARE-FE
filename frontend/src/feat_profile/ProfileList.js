@@ -4,6 +4,7 @@ import './css/ProfileList.css';
 import Header from "../Header";
 import Profile from "./Profile";
 import AddProfile from "./AddProfile";
+import PageFirst from "../PageFirst";
 
 const ProfileList = () => {
   const [profileList, setProfileList] = useState([]);
@@ -47,6 +48,7 @@ const ProfileList = () => {
   }
 
   return (
+    <PageFirst>
     <div className="profileList">
       <Header title="워드클라우드" type="home" />
       <div className="sort">
@@ -64,6 +66,7 @@ const ProfileList = () => {
         <AddProfile onUpdate={onUpdate} />
       </div>
     </div>
+    </PageFirst>
   );
 }
 
