@@ -5,6 +5,7 @@ import {addchild} from "./api/api-login";
 // 추후 회원가입 버튼 누르면 자녀를 등록할 수 있도록 수정
 
 function SelectChild() {
+
     const handleSubmit = (event) => {
         event.preventDefault();
         // 오브젝트에서 form에 저장된 데이터를 맵의 형태로 바꿔줌.
@@ -23,6 +24,8 @@ function SelectChild() {
 
     return (
         <Container component="main" maxWidth="xs" style={{marginTop: "8%"}} >
+
+
             <form noValidate onSubmit={handleSubmit}>
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
@@ -80,7 +83,12 @@ function SelectChild() {
                 <Grid container justify="flex-end">
                 </Grid>
             </form>
+
         </Container>
+
+        // 등록된 아이 수 만큼 아이 선택버튼을 생성하기
+        // 자녀 계정을 추가하는 버튼을 만들어 AddChild와 연결시키기
+
     );
 };
 export default SelectChild;
