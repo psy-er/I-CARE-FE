@@ -10,6 +10,7 @@ import ProfileDetail from "./feat_profile/ProfileDetail";
 import Login from "./feat_login/Login";
 import SignUp from "./feat_login/SignUp";
 import Splash from "./feat_login/Splash";
+import ChatbotFeedbackHome from './feat_chatbot_feedback/ChatbotFeedbackHome';
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
 
       {/* 1일 1질문 */}
       <Route path="/question" element={<QuestionHome />} />
+
+      {/* 챗봇 피드백 */}
+      <Route path="/chatbot/feedback" element={<ChatbotFeedbackHome />} />
 
       {/* 로그인 */}
       <Route path="/login" element={<Login />} />
