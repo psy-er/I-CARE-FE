@@ -10,6 +10,8 @@ import ProfileDetail from "./feat_profile/ProfileDetail";
 import Login from "./feat_login/Login";
 import SignUp from "./feat_login/SignUp";
 import Splash from "./feat_login/Splash";
+import AddChild from "./feat_login/AddChild";
+import SelectChild from "./feat_login/SelectChild";
 import ChatbotFeedbackHome from './feat_chatbot_feedback/ChatbotFeedbackHome';
 import ChatBot from "./feat_chatbot/ChatBot";
 
@@ -37,6 +39,12 @@ function App() {
 
       {/* 회원가입 */}
       <Route path="/signup" element={<SignUp />} />
+
+      {/* 자녀추가 */}
+      <Route path="/addchild" element={<AddChild />} />
+
+      {/* 자녀선택 */}
+      <Route path="/selectchild" element={<SelectChild />} />
 
       {/* 스플래시 */}
       <Route path="/" element={<Navigate to="/splash" />} />

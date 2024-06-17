@@ -5,6 +5,7 @@ export function signin(userDTO) {
         .then((reponse) => {
             if( reponse.token ) {
                 localStorage.setItem("ACCESS_TOKEN", reponse.token);
+                //localStorage.setItem("childId",)
                 window.location.href = "/chatbot"; // /chatbot으로 위치 변경하기
             }
         });
@@ -17,4 +18,12 @@ export function signout() {
 
 export function signup(userDTO) {
     return call("/api/parent/signup", "POST", userDTO);
+}
+
+export function addchild(userDTO){
+    return call("/api/child", "POST", userDTO);
+}
+
+export function getchild(){
+    return call("/api/child/list", "GET")
 }
