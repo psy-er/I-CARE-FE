@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { getIconFont } from "./api/api-icon";
 import MEditDeleteDiary from "./modal/MEditDeleteDiary";
 import Header from "../Header";
+import PageFirst from "../PageFirst";
 
 const DiaryDetail = () => {
   const location = useLocation();
@@ -45,6 +46,7 @@ const DiaryDetail = () => {
   }
 
   return (
+    <PageFirst>
     <div className="detail">
       <Header title="공감일기" type="back" />
       <div className="date">
@@ -61,6 +63,7 @@ const DiaryDetail = () => {
       <MEditDeleteDiary isOpen={isPopupOpen} onClose={handleClosePopup}
         stringDate={stringDate} diary={diary} date={date} />
     </div>
+    </PageFirst>
   );
 }
 

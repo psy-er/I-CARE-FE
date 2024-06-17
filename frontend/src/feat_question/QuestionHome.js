@@ -12,6 +12,7 @@ import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
 // import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined';
 import { useNavigate } from "react-router-dom";
 import MSearchQuestion from "./modal/MSearchQuestion";
+import PageFirst from "../PageFirst";
 
 const options = [
   { value: '오래된순', label: '오래된순' },
@@ -124,6 +125,7 @@ const QuestionHome = () => {
   // };
 
   return (
+    <PageFirst>
     <div>
 
       {/* 설정 | title | 프로필 */}
@@ -175,6 +177,7 @@ const QuestionHome = () => {
       </div>
 
     </div>
+    </PageFirst>
   );
 }
 

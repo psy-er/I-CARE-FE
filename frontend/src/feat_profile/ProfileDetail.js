@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import './css/ProfileDetail.css';
 import Header from "../Header";
+import PageFirst from "../PageFirst";
 
 const ProfileDetail = () => {
   const location = useLocation();
@@ -10,6 +11,7 @@ const ProfileDetail = () => {
   const image = location.state?.image;
 
   return (
+    <PageFirst>
     <div className="profileDetail">
       <Header title="워드클라우드" type="back" />
       <div className="date">
@@ -19,6 +21,7 @@ const ProfileDetail = () => {
         <img src={image} alt="wordCloud" />
       </div>
     </div>
+    </PageFirst>
   );
 }
 
