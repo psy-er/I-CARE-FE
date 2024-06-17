@@ -64,7 +64,7 @@ const AddQuestion = (props) => {
     };
 
   return (
-    <div>
+    <div className="addQ">
       <TextField 
         className="todayOutput"
         name="output"
