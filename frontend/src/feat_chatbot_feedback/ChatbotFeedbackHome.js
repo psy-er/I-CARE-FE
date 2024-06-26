@@ -52,8 +52,8 @@ const ChatbotFeedbackHome = () => {
   };
 
   useEffect(() => { 
-    const childId = "temporary-childId";
-    call(`/api/chatbot/feedback?childId=${childId}`,"GET",null)
+    const childId = "2c94ce259053420201905360edcc0001";
+    call(`/api/chatbot/feedback/list?childId=${childId}`,"GET",null)
     .then((response) => {
       if (response) {
         setItems(response);
@@ -81,8 +81,8 @@ const ChatbotFeedbackHome = () => {
       <List>
         {items.map((item, index) => (
           <React.Fragment key={item.chatbotFeedbackId}>
-          <ChatbotFeedbackList item={item} />
-          {index < items.length - 1 && <Divider />}
+            <ChatbotFeedbackList key={item.chatbotFeedbackId} item={item} />
+            {index < items.length - 1 && <Divider />}
           </React.Fragment>
         ))}
       </List>
@@ -92,7 +92,7 @@ const ChatbotFeedbackHome = () => {
       <List>
         {items.slice().reverse().map((item, index) => (
           <React.Fragment key={item.chatbotFeedbackId}>
-          <ChatbotFeedbackList item={item} />
+          <ChatbotFeedbackList key={item.chatbotFeedbackId} item={item} />
           {index < items.length - 1 && <Divider />}
           </React.Fragment>
         ))}

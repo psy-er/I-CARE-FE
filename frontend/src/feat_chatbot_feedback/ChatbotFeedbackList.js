@@ -14,8 +14,8 @@ const ChatbotFeedbackList = (props) => {
                     inputProps={{ "aria-label": "naked" }}
                     type="text"
                     id={item.id}
-                    name="output"
-                    value={item.output}
+                    name="feedback"
+                    value={item.feedback}
                 />
             </ListItemText>
 
