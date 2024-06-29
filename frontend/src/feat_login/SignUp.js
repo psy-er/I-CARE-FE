@@ -10,13 +10,13 @@ function SignUp() {
         const data = new FormData(event.target);
         const email = data.get("email");
         const password = data.get("password");
-        //const passwordverify = data.get("passwordverify");
-        //const nickname = data.get("nickname");
+        const nickname = data.get("nickname");
 
-        await signup({email: email, password: password}).then(
+        await signup({email: email, password: password, nickname: nickname}).then(
             (response) => {
-                // 계정 생성 성공시 login 페이지로 리다이렉트
-                window.location.href = "/addchild";
+                // 계정 생성 성공시 login 페이지로 리다이렉트?? 자녀추가 페이지로 이동해야 하는 것아닌가?
+                window.location.href = "/login";
+                //window.location.href = "/addchild";
             }
         );
     };

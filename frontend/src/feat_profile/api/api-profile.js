@@ -1,7 +1,9 @@
 import { call } from "../../api/ApiService";
 
+const childId = localStorage.getItem("childId");
+
 export const postProfile = () => {
-  const childId = "2c949d909027bd7c019027be0a720001";
+  //const childId = "2c949d909027bd7c019027be0a720001";
   return call(`/api/profile?childId=${childId}`, "POST", null)
     .then(response => {
       if(response) {
@@ -11,7 +13,7 @@ export const postProfile = () => {
 }
 
 export const getProfileList = () => {
-  const childId = "2c949d909027bd7c019027be0a720001";
+  //const childId = "2c949d909027bd7c019027be0a720001";
   return call(`/api/profile/list?childId=${childId}`, "GET", null)
     .then(response => {
       if(response) {
@@ -21,7 +23,7 @@ export const getProfileList = () => {
 }
 
 export const getProfileImage = (profileId) => {
-  const childId = "2c949d909027bd7c019027be0a720001";
+  //const childId = "2c949d909027bd7c019027be0a720001";
   return call(`/api/profile/image?childId=${childId}&profileId=${profileId}`, "GET", null)
     .then(response => {
       if(response) {
@@ -31,7 +33,7 @@ export const getProfileImage = (profileId) => {
 }
 
 export const getProfile = (profileId) => {
-  const childId = "2c949d909027bd7c019027be0a720001";
+  //const childId = "2c949d909027bd7c019027be0a720001";
   return call(`/api/profile?childId=${childId}&profileId=${profileId}`, "GET", null)
     .then(response => {
       if(response) {

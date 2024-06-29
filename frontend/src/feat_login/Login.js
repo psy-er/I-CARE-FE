@@ -15,7 +15,8 @@ const Login = () => {
             .then((response) => {
                 if( response ) {
                     localStorage.setItem("ACCESS_TOKEN", response.token);
-                    navigate("/chatbot"); // /chatbot으로 위치 변경하기
+                    navigate("/addchild");
+                    //navigate("/chatbot"); // /chatbot으로 위치 변경하기
                 }
             });
     };
@@ -39,7 +40,7 @@ const Login = () => {
                             required
                             fullWidth
                             id="email"
-                            label ="아이디"
+                            label ="이메일"
                             name ="email"
                             autoComplete="username"
                         />
