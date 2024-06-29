@@ -42,6 +42,7 @@ const ChatbotFeedbackHome = () => {
   const [modalOpen, setModalOpen] = useState(false);
   
   const navigate = useNavigate();
+  const childId = localStorage.getItem("childId");
 
   const handleSortChange = (selectedOption) => {
     setSortOrder(selectedOption);
@@ -52,7 +53,7 @@ const ChatbotFeedbackHome = () => {
   };
 
   useEffect(() => { 
-    const childId = "2c94ce259053420201905360edcc0001";
+    //const childId = "2c94ce259053420201905360edcc0001";
     call(`/api/chatbot/feedback/list?childId=${childId}`,"GET",null)
     .then((response) => {
       if (response) {
@@ -66,7 +67,7 @@ const ChatbotFeedbackHome = () => {
   },[]);
 
   const searchChatbotFeedback = (item) => {
-    const childId = "temporary-childId";
+    //const childId = "temporary-childId";
     call(`/api/question/search?childId=${childId}&output=${item.output}`, "GET", null)
     .then((response) => {
         if (response && response.length > 0) {

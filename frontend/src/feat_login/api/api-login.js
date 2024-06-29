@@ -34,6 +34,7 @@ export function addchild(userDTO) {
         });
 }
 
+/*
 export function selectchild() {
     return call("/api/child/list", "GET")
         .then((response) => {
@@ -45,3 +46,4 @@ export function selectchild() {
             throw error;
         });
 }
+*/
