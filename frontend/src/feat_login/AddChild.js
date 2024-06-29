@@ -19,8 +19,8 @@ function AddChild() {
             (response) => {
                 // 자녀 등록 성공시 챗봇으로 이동
                 //window.location.href = "/login";
-                //window.location.href = "/chatbot";
-                window.location.href = "/selectchild";
+                window.location.href = "/chatbot";
+                //window.location.href = "/selectchild";
             }
         );
     };

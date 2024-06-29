@@ -55,7 +55,7 @@ const ChatBot = () => {
   };
 
   const handleClick = () => {
-    navigate('/chatbot/feedback');
+    navigate('/chatbotfeedback');
   }
 
   return (
