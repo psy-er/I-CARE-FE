@@ -10,20 +10,23 @@ function AddChild() {
         event.preventDefault();
         // 오브젝트에서 form에 저장된 데이터를 맵의 형태로 바꿔줌.
         const data = new FormData(event.target);
-        const childname = data.get("childname");
+        const name = data.get("name");
         const birth = data.get("birth"); 
         const gender = data.get("gender");
+        const nickname = data.get("nickname");
 
-        addchild({childname: childname, birth : birth, gender : gender}).then(
+        addchild({name: name, birth : birth, gender : gender, nickname : nickname}).then(
             (response) => {
-                // 자녀 등록 성공시 로그인 화면으로 이동
-                window.location.href = "/login";
+                // 자녀 등록 성공시 챗봇으로 이동
+                //window.location.href = "/login";
+                //window.location.href = "/chatbot";
+                window.location.href = "/selectchild";
             }
         );
     };
 
     return (
-        <Container component="main" maxWidth="xs" style={{marginTop: "8%"}} >
+        <Container component="main" maxWidth="xs" style={{marginTop: "8%"}}>
             <form noValidate onSubmit={handleSubmit}>
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
@@ -37,10 +40,22 @@ function AddChild() {
                             variant="outlined"
                             required
                             fullWidth
-                            name = "childname"
+                            name = "nickname"
+                            label="닉네임"
+                            autoFocus
+                            id="nickname"
+                            autoComplete="current-password"
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField 
+                            variant="outlined"
+                            required
+                            fullWidth
+                            name = "name"
                             label="이름"
                             autoFocus
-                            id="childname"
+                            id="name"
                             autoComplete="current-password"
                         />
                     </Grid>

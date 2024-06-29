@@ -1,5 +1,7 @@
 import { call } from "../../api/ApiService";
 
+const childId = localStorage.getItem("childId");
+
 export const getQuestionList = () => {
    return call(`/api/question/list`, "GET", null)
      .then((response) => {
@@ -11,7 +13,7 @@ export const getQuestionList = () => {
 
 export const postQuestion = (question) => {
      // questionId는 자동 생성
-     const childId = "temporary-childId";
+   //const childId = "temporary-childId";
    return call(`/api/question?childId=${childId}`, "POST", question)
      .then((response) => {
        if(response) {
