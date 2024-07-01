@@ -1,9 +1,10 @@
 import React from "react";
 import {Container, Grid, Typography, TextField, Button} from "@mui/material";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {signup} from "./api/api-login";
 
 function SignUp() {
+    const navigate = useNavigate();
     const handleSubmit = async (event) => {
         event.preventDefault();
         // 오브젝트에서 form에 저장된 데이터를 맵의 형태로 바꿔줌.
@@ -15,7 +16,7 @@ function SignUp() {
         await signup({email: email, password: password, nickname: nickname}).then(
             (response) => {
                 // 계정 생성 성공시 login 페이지로 리다이렉트?? 자녀추가 페이지로 이동해야 하는 것아닌가?
-                window.location.href = "/login";
+                navigate("/login");
                 //window.location.href = "/addchild";
             }
         );

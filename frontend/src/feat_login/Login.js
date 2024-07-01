@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {Container, Grid, Typography, TextField, Button} from "@mui/material";
 import {Link, useNavigate} from "react-router-dom";
 import {signin} from "./api/api-login";
 
 const Login = () => {
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if(localStorage.getItem("ACCESS_TOKEN")) {
+            if(localStorage.getItem("childId")) {
+                navigate("/chatbot");
+            } else {
+                navigate("/addchild");
+            }
+        }
+    })
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
