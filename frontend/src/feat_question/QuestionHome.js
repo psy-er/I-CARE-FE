@@ -48,7 +48,7 @@ const QuestionHome = () => {
   };
 
   useEffect(() => { 
-    const childId = "2c949d9e9028b5c5019028b62eed0001";
+    const childId = "2c949d90902907d801902908ce160001";
     call(`/api/question?childId=${childId}`,"GET",null)
     .then((response) => {
       if (response) {
@@ -63,7 +63,7 @@ const QuestionHome = () => {
 
   //추가 
   const postQuestion = (item) => {
-    const childId = "2c949d9e9028b5c5019028b62eed0001";
+    const childId = "2c949d90902907d801902908ce160001";
     call(`/api/question?childId=${childId}`, "POST", item)
     .then((response) => {
       if(response) {
@@ -74,7 +74,7 @@ const QuestionHome = () => {
 
   //검색
   const searchQuestion = (item) => {
-    const childId = "2c949d9e9028b5c5019028b62eed0001";
+    const childId = "2c949d90902907d801902908ce160001";
     call(`/api/question/search?childId=${childId}&output=${item.output}`, "GET", null)
     .then((response) => {
         if (response && response.length > 0) {
