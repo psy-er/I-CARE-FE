@@ -1,6 +1,5 @@
 .profileList .sort {
   display: flex;
-  justify-content: flex-end;
 }
 
 .profileList .sort select {
@@ -9,7 +8,7 @@
   width: 100px;
   padding: 10px;
   outline: none;
-  margin-bottom: 15px;
+  margin: auto;
 }
 
 .profile {
@@ -45,7 +44,6 @@
 
 .profileList .add {
   display: flex;
-  justify-content: flex-end;
 }
 
 .profileList .add .plus {
