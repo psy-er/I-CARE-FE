@@ -10,12 +10,16 @@ import ProfileDetail from "./feat_profile/ProfileDetail";
 import Login from "./feat_login/Login";
 import SignUp from "./feat_login/SignUp";
 import Splash from "./feat_login/Splash";
-import ChatBot from "./feat_chatbot/ChatBot";
+import AddChild from "./feat_login/AddChild";
+import SelectChild from "./feat_login/SelectChild";
+import ChatBotStart from "./feat_chatbot/ChatBotStart";
+import ChatbotFeedbackHome from "./feat_chatbot_feedback/ChatbotFeedbackHome";
 
 function App() {
+  // localStorage.removeItem("ACCESS_TOKEN");
   return (
     <Routes>
-      <Route path="/chatbot" element={<ChatBot />} />
+      <Route path="/chatbot" element={<ChatBotStart />} />
       {/* 일기 */}
       <Route path="/diary" element={<DiaryCalendar />} />
       <Route path="/diary/detail" element={<DiaryDetail />} />
@@ -34,9 +38,18 @@ function App() {
       {/* 회원가입 */}
       <Route path="/signup" element={<SignUp />} />
 
+      {/* 자녀추가 */}
+      <Route path="/addchild" element={<AddChild />} />
+
+      {/* 자녀선택 */}
+      <Route path="/selectchild" element={<SelectChild />} />
+
       {/* 스플래시 */}
       <Route path="/" element={<Navigate to="/splash" />} />
       <Route path="/splash" element={<Splash />} />
+
+      {/*챗봇피드백*/}
+      <Route path="/chatbotfeedback" element={<ChatbotFeedbackHome/>} />
 
     </Routes>
   );

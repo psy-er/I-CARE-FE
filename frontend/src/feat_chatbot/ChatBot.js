@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./css/ChatBot.css";
-import PageFirst from "../PageFirst";
-import Header from "../Header";
-import { postRequest, postChat, deleteChat } from "./api/api-chatbot";
+import { postRequest, postChat } from "./api/api-chatbot";
 import { useNavigate } from "react-router-dom";
 
 const ChatBot = () => {
@@ -10,17 +8,10 @@ const ChatBot = () => {
     request: ""
   });
   const [talks, setTalks] = useState([]);
+  const [writable, setWritable] = useState(true);
   const [feedback, setFeedback] = useState("");
   const textareaRef = useRef(null);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    try {
-      deleteChat();
-    } catch(error) {
-      console.error('Error delete chatting : ', error);
-    }
-  });
 
   useEffect(() => {
     const textarea = textareaRef.current;
@@ -35,12 +26,12 @@ const ChatBot = () => {
     });
   }
 
-  const onSubmitRequest = async () => {
+  const onSubmitRequest = () => {
     setChat({request: ""});
     setTalks([...talks, chat.request]);
     try {
       postRequest(chat)
-        .then(response => {
+        .then((response) => {
           setTalks([...talks, chat.request, response.response]);
       });
     } catch(error) {
@@ -49,7 +40,9 @@ const ChatBot = () => {
   };
 
   const onSubmitChat = () => {
-    if(talks != null) {
+    if(talks.length > 0) {
+      setWritable(false);
+      document.getElementsByClassName('button2').disabled = true;
       try {
         postChat()
           .then(response => {
@@ -62,14 +55,12 @@ const ChatBot = () => {
   };
 
   const handleClick = () => {
-    navigate('/chatbot/feedback');
+    navigate('/chatbotfeedback');
   }
 
   return (
-    <PageFirst>
-      <Header title="AI 대화" type="home" />
+    <div>
       <div>
-        <div>현재 상황 : 비가 많이 오는데 자녀가 밖에 나가서 놀고 싶다고 하는 중입니다.</div>
         {talks.map((talk, index) => (
           <div key={index} style={{display: 'flex',
             justifyContent: index % 2 === 0 ? 'flex-end' : 'flex-start',
@@ -86,23 +77,26 @@ const ChatBot = () => {
           </div>
         ))}
         {feedback.length > 0 && (
-          <div style={{display: 'flex', justifyContent: 'flex-start', padding: '10px', 
-            backgroundColor: '#6271f5', color: 'white', maxWidth: '60%',
-            borderRaduis: '10px'
+          <div style={{display: 'flex', justifyContent: 'flex-start',
+            padding: '13px', borderRadius: '15px', margin: '10px',
+            backgroundColor: '#272D62', color: 'white', maxWidth: '100%',
+            lineHeight: '25px'
           }}>{feedback}</div>
         )}
       </div>
       <div className="chatfeedback">
         <button className="button1" onClick={handleClick}>피드백 목록</button>
-        <button className="button2" onClick={onSubmitChat}>피드백 받기</button>
+        <button className="button2" onClick={onSubmitChat} disabled="">피드백 받기</button>
       </div>
-      <div className="chatting">
-        <textarea value={chat.request} name="request"
-          onChange={onChange} ref={textareaRef}
-          placeholder="AI와 대화 후 피드백을 받아보세요." />
-        <button className="save" onClick={onSubmitRequest}>^</button>
-      </div>
-    </PageFirst>
+      {writable && (
+        <div className="chatting">
+          <textarea value={chat.request} name="request"
+            onChange={onChange} ref={textareaRef}
+            placeholder="AI와 대화 후 피드백을 받아보세요." />
+          <button className="save" onClick={onSubmitRequest}>확인</button>
+        </div>
+      )}
+    </div>
   );
 }
 
