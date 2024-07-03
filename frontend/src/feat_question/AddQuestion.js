@@ -7,7 +7,7 @@ import MAddQuestion from "./modal/MAddQuestion";
 import MAddCheckQuestion from "./modal/MAddCheckQuestion";
 
 const AddQuestion = (props) => {
-    const date = new Date(); // 날짜 받아오기 
+    const date = props.date; // 날짜 받아오기 
     const Stringdate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`; // 오늘 날짜
 
     const [text, setText] = useState(''); // 글자수
