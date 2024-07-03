@@ -3,12 +3,12 @@ import "./css/QuestionHome.css";
 import Select from 'react-select';
 import { Divider, List } from "@mui/material";
 import AddQuestion from "./AddQuestion";
-import { call } from "../api/ApiService";
 import QuestionList from "./QuestionList";
 import SearchQuestion from "./SearchQuestion";
 import Header from "../Header";
 import MSearchQuestion from "./modal/MSearchQuestion";
 import PageFirst from "../PageFirst";
+import { getQuestion, postQuestion, getQuestionByOutput } from "./api/api-question";
 
 const options = [
   { value: '오래된순', label: '오래된순' },
@@ -50,42 +50,47 @@ const QuestionHome = () => {
     setModalOpen(false);
   };
 
-  useEffect(() => { 
-    const childId = "2c949d9e9028b5c5019028b62eed0001";
-    call(`/api/question?childId=${childId}`,"GET",null)
-    .then((response) => {
-      if (response) {
-        setItems(response);
-        console.log(response);
-      }
-    })
-    .catch((error) => {
-      console.error("Error fetching items", error);
-    });
+  useEffect(() => {
+    try {
+      getQuestion()
+        .then(response => {
+          if(response) {
+            setItems(response);
+          }
+        });
+    } catch(error) {
+      console.error('Error fetching items : ', error);
+    }
   },[]);
 
   //추가 
-  const postQuestion = (item) => {
-    const childId = "2c949d9e9028b5c5019028b62eed0001";
-    call(`/api/question?childId=${childId}`, "POST", item)
-    .then((response) => {
-      if(response) {
-        setItems([...items, response]);
-      }
-    }) 
+  const addQuestion = (question) => {
+    try {
+      postQuestion(question)
+        .then(response => {
+          if(response) {
+            setItems([...items, response]);
+          }
+        });
+    } catch(error) {
+      console.error('Error fetching items : ', error);
+    }
   };
 
   //검색
   const searchQuestion = (item) => {
-    const childId = "2c949d9e9028b5c5019028b62eed0001";
-    call(`/api/question/search?childId=${childId}&output=${item.output}`, "GET", null)
-    .then((response) => {
-        if (response && response.length > 0) {
-          setItems(response);
-        } else {
-          setModalOpen(true);
-        }
-    })
+    try {
+      getQuestionByOutput(item.output)
+        .then(response => {
+          if(response && response.length > 0) {
+            setItems(response);
+          } else {
+            setModalOpen(true);
+          }
+        });
+    } catch(error) {
+      console.error('Error fetching items : ', error);
+    }
   }
 
 
