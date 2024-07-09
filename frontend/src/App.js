@@ -11,6 +11,10 @@ import Login from "./feat_login/Login";
 import SignUp from "./feat_login/SignUp";
 import Splash from "./feat_login/Splash";
 import AddChild from "./feat_login/AddChild";
+import OnBoarding1 from "./feat_login/OnBoarding1";
+import OnBoarding2 from "./feat_login/OnBoarding2";
+import OnBoarding3 from "./feat_login/OnBoarding3";
+import OnBoarding4 from "./feat_login/OnBoarding4";
 import SelectChild from "./feat_login/SelectChild";
 import ChatBotStart from "./feat_chatbot/ChatBotStart";
 import ChatbotFeedbackHome from "./feat_chatbot_feedback/ChatbotFeedbackHome";
@@ -50,6 +54,20 @@ function App() {
 
       {/*챗봇피드백*/}
       <Route path="/chatbotfeedback" element={<ChatbotFeedbackHome/>} />
+
+      {/* 온보딩 */}
+      <Route path="/splash" element={<Navigate to="onboarding1"/>} />
+      <Route path="/onboarding1" element={<OnBoarding1 />} />
+
+      <Route path="/onboarding1" element={<Navigate to="onboarding2"/>} />
+      <Route path="/onboarding2" element={<OnBoarding2 />} />
+
+      <Route path="/onboarding2" element={<Navigate to="onboarding3"/>} />
+      <Route path="/onboarding3" element={<OnBoarding3 />} />
+
+      <Route path="/onboarding3" element={<Navigate to="onboarding4"/>} />
+      <Route path="/onboarding4" element={<OnBoarding4 />} />
+
 
     </Routes>
   );
