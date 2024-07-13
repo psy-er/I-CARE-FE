@@ -1,5 +1,5 @@
 import React from "react";
-import {Container, Grid, Typography, TextField, Button} from "@mui/material";
+import {Container, Grid, Typography, TextField, Button, Box} from "@mui/material";
 import {Link} from "react-router-dom";
 import {addchild} from "./api/api-login";
 
@@ -30,67 +30,81 @@ function AddChild() {
             <form noValidate onSubmit={handleSubmit}>
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
-                        <Typography component="h1" variant="h5">
-                        <div> 자녀를 </div> 
-                        <div> 등록해주세요 </div>
-                        </Typography>
+                        <Box mt={7}>
+                            <Typography component="h2" variant="h5" style={{fontWeight: "bold"}}>
+                            <div> 자녀를 </div> 
+                            <div> 등록해주세요 </div>
+                            </Typography>
+                        </Box>
                     </Grid>
                     <Grid item xs={12}>
+                    <Typography component="label" variant="body2" style={{ marginBottom: "10px" }}>
+                      닉네임
+                    </Typography>
                         <TextField 
                             variant="outlined"
-                            required
                             fullWidth
                             name = "nickname"
-                            label="닉네임"
+                            placeholder="닉네임을 입력하세요"
                             autoFocus
                             id="nickname"
                             autoComplete="current-password"
                         />
                     </Grid>
                     <Grid item xs={12}>
+                    <Typography component="label" variant="body2" style={{ marginBottom: "10px" }}>
+                      이름
+                    </Typography>
                         <TextField 
                             variant="outlined"
-                            required
                             fullWidth
                             name = "name"
-                            label="이름"
+                            placeholder="이름을 입력하세요"
                             autoFocus
                             id="name"
                             autoComplete="current-password"
                         />
                     </Grid>
                     <Grid item xs={12}>
+                    <Typography component="label" variant="body2" style={{ marginBottom: "10px" }}>
+                      생년월일
+                    </Typography>
                         <TextField 
                             variant="outlined"
-                            required
                             fullWidth
                             name = "birth"
-                            label="생년월일"
+                            placeholder="생년월일을 입력하세요"
                             autoFocus
                             id="birth"
                             autoComplete="current-password"
                         />
                     </Grid>
                     <Grid item xs={12}>
+                    <Typography component="label" variant="body2" style={{ marginBottom: "10px" }}>
+                      성별
+                    </Typography>
                         <TextField 
                             variant="outlined"
-                            required
                             fullWidth
                             name = "gender"
-                            label="성별"
+                            placeholder="성별을 입력하세요"
                             autoFocus
                             id="gender"
                             autoComplete="current-password"
                         />
                     </Grid>
                     <Grid item xs={12}>
-                        <Button
+                        <Box mt = {5}>
+                            <Button
                             type="submit"
                             fullWidth
                             variant="contained"
+                            style={{ fontWeight: "bold" }}
+                            sx={{ height: "56px", fontSize: "1rem", backgroundColor: "#D9D9D9", color: "white", boxShadow: 'none' }}
                             color="primary">
-                            자녀 등록 하기
-                        </Button>
+                                자녀 등록 하기
+                            </Button>
+                        </Box>
                     </Grid>
                 </Grid>
                 <Grid container justify="flex-end">

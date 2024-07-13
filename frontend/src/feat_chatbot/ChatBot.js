@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./css/ChatBot.css";
-import { postRequest, postChat } from "./api/api-chatbot";
+import { postRequest } from "./api/api-chatbot";
+import { postChat } from "./api/api-chatbot-feedback";
 import { useNavigate } from "react-router-dom";
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const ChatBot = () => {
   const [chat, setChat] = useState({
@@ -55,7 +57,7 @@ const ChatBot = () => {
   };
 
   const handleClick = () => {
-    navigate('/chatbotfeedback');
+    navigate('/chatbot/feedback');
   }
 
   return (
@@ -86,14 +88,14 @@ const ChatBot = () => {
       </div>
       <div className="chatfeedback">
         <button className="button1" onClick={handleClick}>피드백 목록</button>
-        <button className="button2" onClick={onSubmitChat} disabled="">피드백 받기</button>
+        {writable && (<button className="button2" onClick={onSubmitChat} disabled="">피드백 받기</button>)}
       </div>
       {writable && (
         <div className="chatting">
           <textarea value={chat.request} name="request"
             onChange={onChange} ref={textareaRef}
             placeholder="AI와 대화 후 피드백을 받아보세요." />
-          <button className="save" onClick={onSubmitRequest}>확인</button>
+          <button className="save" onClick={onSubmitRequest}><ArrowForwardIosIcon /></button>
         </div>
       )}
     </div>
