@@ -106,7 +106,16 @@ const ChatbotFeedbackHome = () => {
     <PageFirst>
     <div>
 
-      <Header title="AI 대화 피드백" type="back" />
+      <Header title="AI 대화" type="back" />
+
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <IconButton onClick={() => navigate('/chatbot')} sx={{ marginRight: 0.1 }}>
+          <ArrowBackIosOutlinedIcon />
+        </IconButton>
+        <div style={{ marginLeft: 'auto', marginRight: 'auto', fontWeight: 'bold' }}>
+        AI 대화 피드백
+        </div>
+      </div>
 
       <div className="search"> 
         <Select
