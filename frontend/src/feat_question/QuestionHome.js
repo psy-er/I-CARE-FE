@@ -42,9 +42,7 @@ const QuestionHome = () => {
   const [sortOrder, setSortOrder] = useState(options[1]); // 기본값을 최신순으로 설정
   const [modalOpen, setModalOpen] = useState(false);
   
-  const date = new Date(); // 날짜 받아오기
-  const [day] = useState(new Date().toLocaleDateString());
-  
+  const date = new Date(); // 날짜 받아오기  
 
   const handleSortChange = (selectedOption) => {
     setSortOrder(selectedOption);
@@ -116,8 +114,7 @@ const QuestionHome = () => {
       <List>
         {items.map((item, index) => (
           <React.Fragment key={item.questionId}>
-          <QuestionList item={item} day={day} setInput={setInput}
-          // inputQuestion = {inputQuestion}
+          <QuestionList item={item} setInput={setInput}
           />
           {index < items.length - 1 && <Divider />}
           </React.Fragment> // 구분선 추가
@@ -130,8 +127,7 @@ const QuestionHome = () => {
       <List>
         {items.reverse().map((item, index) => (
           <React.Fragment key={item.questionId}>
-          <QuestionList item={item} day={day} setInput={setInput}
-          // inputQuestion = {inputQuestion}
+          <QuestionList item={item} setInput={setInput}
           />
           {index < items.length - 1 && <Divider />}
           </React.Fragment> // 구분선 추가
@@ -148,7 +144,7 @@ const QuestionHome = () => {
       <div className="todayInput">{input}</div>
 
       <AddQuestion postQuestion={postQuestion} 
-       date={date}/>
+       date={date} items={items}/>
 
       <div className="search"> 
 
