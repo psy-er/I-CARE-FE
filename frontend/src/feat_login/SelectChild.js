@@ -49,7 +49,9 @@ function SelectChild() {
 
             <Header title="자녀 정보" type="back"> </Header>
             <Grid container direction="column" alignItems="center" spacing={2}>
-
+                <Grid item>
+                    <Typography variant="h5">Select Your Child</Typography>
+                </Grid>
                 {loading ? (
                     <CircularProgress />
                 ) : (

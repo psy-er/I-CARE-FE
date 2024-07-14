@@ -17,13 +17,16 @@ import OnBoarding3 from "./feat_login/OnBoarding3";
 import OnBoarding4 from "./feat_login/OnBoarding4";
 import SelectChild from "./feat_login/SelectChild";
 import ChatBotStart from "./feat_chatbot/ChatBotStart";
-import ChatbotFeedbackHome from "./feat_chatbot_feedback/ChatbotFeedbackHome";
+import ChatBotFeedbackList from "./feat_chatbot/ChatBotFeedbackList";
 
 function App() {
   // localStorage.removeItem("ACCESS_TOKEN");
   return (
     <Routes>
+      {/*챗봇*/}
       <Route path="/chatbot" element={<ChatBotStart />} />
+      <Route path="/chatbot/feedback" element={<ChatBotFeedbackList/>} />
+      
       {/* 일기 */}
       <Route path="/diary" element={<DiaryCalendar />} />
       <Route path="/diary/detail" element={<DiaryDetail />} />
@@ -51,9 +54,6 @@ function App() {
       {/* 스플래시 */}
       <Route path="/" element={<Navigate to="/splash" />} />
       <Route path="/splash" element={<Splash />} />
-
-      {/*챗봇피드백*/}
-      <Route path="/chatbotfeedback" element={<ChatbotFeedbackHome/>} />
 
       {/* 온보딩 */}
       <Route path="/splash" element={<Navigate to="onboarding1"/>} />
