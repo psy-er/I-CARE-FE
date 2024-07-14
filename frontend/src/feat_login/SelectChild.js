@@ -16,9 +16,9 @@ function SelectChild() {
         setLoading(true);
         selectchild()
             .then((response) => {
-                console.log(response.data);
-                if (Array.isArray(response.data) && response.data.length > 0) {
-                    const formattedChildList = response.data.map(child => ({
+                console.log(response);
+                if (Array.isArray(response) && response.length > 0) {
+                    const formattedChildList = response.map(child => ({
                         childId: child.childId,
                         nickname: child.nickname,
                         name: child.name,
