@@ -11,16 +11,23 @@ const AddQuestion = (props) => {
     const Stringdate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`; // 오늘 날짜
 
     const [text, setText] = useState(''); // 글자수
-    const [question, setQuestion] = useState({output:""});
+    const [question, setQuestion] = useState({output:"", inputId: null});
     const postQuestion = props.postQuestion;
     const [isHovered, setIsHovered] = useState(false);
 
     const [modalAddOpen, setModalAddOpen] = useState(false);  // 이미 답변 했을 시 modal 창
     const [modalCheckOpen, setModalCheckOpen] = useState(false);
 
+    const [item, setItem] = useState(null);
+
+    const [input, setInput] = useState('testtest'); // 추가된 상태
+
     //글자 수 count
     const handleChange = (e) => {
       const { name, value } = e.target;
+      if (value.includes('\n')) {
+        return;
+      }
       setQuestion({
           ...question,
           [name]: value
@@ -46,6 +53,7 @@ const AddQuestion = (props) => {
       setIsHovered(false);
     };
 
+
     //button 동작 함수 (v 버튼을 눌러야 추가가 된다.)
     const onButtonClick = () => {
       // if (Stringdate===localStorage.getItem('Stringdate')) { // 이미 작성된 경우에는 모달
@@ -55,13 +63,27 @@ const AddQuestion = (props) => {
       // }
       //  else { // 작성 안 됨
         // setModalCheckOpen(true); //정말 작성할 건지
-        postQuestion(question); // 추가하고
-        // localStorage.setItem('Stringdate',Stringdate); // update
-        setQuestion({output: ""});
-        setText("");
-        // setModalCheckOpen(true);
-      
+        if (question.output!==""){
+          postQuestion(question); // 추가하고
+          // localStorage.setItem('Stringdate',Stringdate); // update
+          setQuestion({output: ""});
+          setText("");
+          // setModalCheckOpen(true);
+        }
     };
+
+  const enterKeyEventHandler = (e) => {
+    if (e.key === 'Enter') {
+        setIsHovered(true);
+        onButtonClick();
+    }
+  }
+
+  const enterKeyUp = (e) => {
+    if (e.key === 'Enter') {
+        setIsHovered(false);
+    } 
+  }
 
   return (
     <div className="addQ">
@@ -70,12 +92,14 @@ const AddQuestion = (props) => {
         name="output"
         value={question.output}
         onChange={handleChange}
+        onKeyPress={enterKeyEventHandler}
+        onKeyUp={enterKeyUp}
         inputProps={{ maxLength: 50 }}
         style={{ 
-            width: '315px',
+            width: '295px',
           }}
         placeholder="오늘의 질문에 답변해보세요."
-        variant="outlined"
+        variant="standard"
         multiline // TextField를 멀티라인으로 변경
         InputProps={{
           endAdornment: (
@@ -88,7 +112,7 @@ const AddQuestion = (props) => {
               {isHovered ? ( // 마우스 올렸을 때 아이콘 아래로 
                 <KeyboardArrowDownIcon onClick={onButtonClick} className="uploadIcon" />
               ) : (
-                <KeyboardArrowRightIcon className="uploadIcon" />
+                <KeyboardArrowRightIcon className="uploadUnIcon" />
               )}
             </InputAdornment>
           ), 
@@ -97,7 +121,7 @@ const AddQuestion = (props) => {
 
     <div className="date"> 
         <div>{Stringdate}</div>
-        <div>{text.length}/50</div>
+        <div>{text.length > 50 ? 50 : text.length}/50</div>
     </div>
 
     {/* <MAddQuestion
