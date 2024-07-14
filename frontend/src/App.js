@@ -18,6 +18,11 @@ import OnBoarding4 from "./feat_login/OnBoarding4";
 import SelectChild from "./feat_login/SelectChild";
 import ChatBotStart from "./feat_chatbot/ChatBotStart";
 import ChatBotFeedbackList from "./feat_chatbot/ChatBotFeedbackList";
+import KakaoAccountVerify from './feat_settings/KakaoAccountVerify';
+import MainSettings from './feat_settings/MainSettings';
+import PasswordChange from './feat_settings/PasswordChange';
+import PasswordVerify from './feat_settings/PasswordVerify';
+
 
 function App() {
   // localStorage.removeItem("ACCESS_TOKEN");
@@ -68,6 +73,11 @@ function App() {
       <Route path="/onboarding3" element={<Navigate to="onboarding4"/>} />
       <Route path="/onboarding4" element={<OnBoarding4 />} />
 
+      {/* 설정 */}
+      <Route path="/kakaoaccount" element={<KakaoAccountVerify/>} />
+      <Route path="/mainsettings" element={<MainSettings />} />
+      <Route path="/changepassword" element={<PasswordChange/>} />
+      <Route path="/verifypassword" element={<PasswordVerify/>} />
 
     </Routes>
   );

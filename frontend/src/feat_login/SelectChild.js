@@ -46,12 +46,8 @@ function SelectChild() {
     return (
         <div className="app-wrapper">
             <div className="app-container">
-
             <Header title="자녀 정보" type="back"> </Header>
             <Grid container direction="column" alignItems="center" spacing={2}>
-                <Grid item>
-                    <Typography variant="h5">Select Your Child</Typography>
-                </Grid>
                 {loading ? (
                     <CircularProgress />
                 ) : (
@@ -64,7 +60,7 @@ function SelectChild() {
                     ))
                 )}
                 <Grid item>
-                    <Button variant="contained" color="secondary" onClick={handleAddChild}>
+                    <Button variant="contained"  color="secondary" backgroundColor = "#6271F5" onClick={handleAddChild}>
                         +
                     </Button>
                 </Grid>
