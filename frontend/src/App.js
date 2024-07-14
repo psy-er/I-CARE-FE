@@ -61,16 +61,9 @@ function App() {
       <Route path="/splash" element={<Splash />} />
 
       {/* 온보딩 */}
-      <Route path="/splash" element={<Navigate to="onboarding1"/>} />
       <Route path="/onboarding1" element={<OnBoarding1 />} />
-
-      <Route path="/onboarding1" element={<Navigate to="onboarding2"/>} />
       <Route path="/onboarding2" element={<OnBoarding2 />} />
-
-      <Route path="/onboarding2" element={<Navigate to="onboarding3"/>} />
       <Route path="/onboarding3" element={<OnBoarding3 />} />
-
-      <Route path="/onboarding3" element={<Navigate to="onboarding4"/>} />
       <Route path="/onboarding4" element={<OnBoarding4 />} />
 
       {/* 설정 */}
