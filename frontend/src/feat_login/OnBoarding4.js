@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './css/OnBoarding.css'; 
+import './css/Splash.css'; 
 
 const OnBoarding4 = () => {
     const navigate = useNavigate();

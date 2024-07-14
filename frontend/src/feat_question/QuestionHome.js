@@ -6,7 +6,6 @@ import AddQuestion from "./AddQuestion";
 import { call } from "../api/ApiService";
 import QuestionList from "./QuestionList";
 import SearchQuestion from "./SearchQuestion";
-import Header from "../Header";
 import MSearchQuestion from "./modal/MSearchQuestion";
 import PageFirst from "../PageFirst";
 
@@ -34,6 +33,10 @@ const customStyles = {
 };
 
 const QuestionHome = () => {
+  const header = {
+    title: "일일문답",
+    type: "home"
+  };
   const [items, setItems] = useState([]);
   const [input, setInput] = useState('오늘의 질문을 준비하는 중입니다.'); // 추가된 상태
   const [sortOrder, setSortOrder] = useState(options[1]); // 기본값을 최신순으로 설정
@@ -139,10 +142,8 @@ const QuestionHome = () => {
   const questionList = sortOrder === options[1] ? questionNewList : questionOldList;
 
   return (
-    <PageFirst>
+    <PageFirst header={header}>
     <div>
-
-    <Header title="일일문답" type="home" />
 
       <div className="todayInput">{input}</div>
 

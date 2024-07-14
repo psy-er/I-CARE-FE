@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-//import './css/OnBoarding.css'; 
-import './css/Splash.css'; // CSS 파일을 추가합니다.
+import './css/Splash.css';
 
 const OnBoarding2 = () => {
     const navigate = useNavigate();

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Header from "../Header";
 import PageFirst from "../PageFirst";
 import ChatBot from "./ChatBot";
 import "./css/ChatBotStart.css";
@@ -8,6 +7,10 @@ import MSelectTopic from "./modal/MSelectTopic";
 import { useNavigate } from "react-router-dom";
 
 const ChatBotStart = () => {
+  const header = {
+    title: 'AI 대화',
+    type: 'home'
+  };
   const navigate = useNavigate();
   const [start, setStart] = useState(false);
   const [topic, setTopic] = useState('');
@@ -33,14 +36,10 @@ const ChatBotStart = () => {
   }
 
   return (
-    <PageFirst>
-      <Header title="AI 대화" type="home" />
+    <PageFirst header={header}>
       {start ? (
         <div>
-          <div className="topic">
-            현재 상황은 '{topic}'입니다.
-          </div>
-          <ChatBot />
+          <ChatBot topic={topic} />
         </div>
       ) : (
         <div className="chatbotStart">
