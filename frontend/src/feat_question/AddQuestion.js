@@ -25,6 +25,9 @@ const AddQuestion = (props) => {
     //글자 수 count
     const handleChange = (e) => {
       const { name, value } = e.target;
+      if (value.includes('\n')) {
+        return;
+      }
       setQuestion({
           ...question,
           [name]: value
@@ -60,15 +63,27 @@ const AddQuestion = (props) => {
       // }
       //  else { // 작성 안 됨
         // setModalCheckOpen(true); //정말 작성할 건지
-        postQuestion(question); // 추가하고
-        // postinputQuestion();
-        // inputQuestion();
-        // localStorage.setItem('Stringdate',Stringdate); // update
-        setQuestion({output: ""});
-        setText("");
-        // setModalCheckOpen(true);
-      
+        if (question.output!==""){
+          postQuestion(question); // 추가하고
+          // localStorage.setItem('Stringdate',Stringdate); // update
+          setQuestion({output: ""});
+          setText("");
+          // setModalCheckOpen(true);
+        }
     };
+
+  const enterKeyEventHandler = (e) => {
+    if (e.key === 'Enter') {
+        setIsHovered(true);
+        onButtonClick();
+    }
+  }
+
+  const enterKeyUp = (e) => {
+    if (e.key === 'Enter') {
+        setIsHovered(false);
+    } 
+  }
 
   return (
     <div className="addQ">
@@ -77,6 +92,8 @@ const AddQuestion = (props) => {
         name="output"
         value={question.output}
         onChange={handleChange}
+        onKeyPress={enterKeyEventHandler}
+        onKeyUp={enterKeyUp}
         inputProps={{ maxLength: 50 }}
         style={{ 
             width: '295px',
