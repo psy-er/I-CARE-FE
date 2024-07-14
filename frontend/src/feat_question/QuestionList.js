@@ -7,7 +7,7 @@ const QuestionList = (props) => {
     const item = props.item;
     const output = item.output;
     const input = item.input;
-    const day = props.day;
+    const day = item.date;
     const [isOpen, setIsOpen] = useState(false);
 
     const handleToggleChange = () => {
