@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import PageFirst from "../PageFirst";
-import Header from "../Header";
 import { getFeedbackList } from "./api/api-chatbot-feedback";
 import ChatBotFeedback from "./ChatBotFeedback";
 import "./css/ChatBotFeedbackList.css";
 
 const ChatBotFeedbackList = () => {
+  const header = {
+    title:"AI 대화 피드백",
+    type: "back",
+    routeBack: "/chatbot" 
+  };
   const [feedbackList, setFeedbackList] = useState([]);
   const [sort, setSort] = useState("latest");
 
@@ -41,8 +45,7 @@ const ChatBotFeedbackList = () => {
   }
 
   return (
-    <PageFirst>
-      <Header title="AI 대화 피드백" type="back" routeBack="/chatbot" />
+    <PageFirst header={header}>
       <div className="chatbotFeedbackList">
         <div className="sort">
           <select onChange={handleSort} value={sort}>
