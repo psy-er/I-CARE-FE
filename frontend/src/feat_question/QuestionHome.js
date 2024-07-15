@@ -1,36 +1,14 @@
 import React, { useEffect, useState } from "react";
-import "./css/QuestionHome.css";
 import Select from 'react-select';
 import { Divider, List } from "@mui/material";
+import "./css/QuestionHome.css";
 import AddQuestion from "./AddQuestion";
 import QuestionList from "./QuestionList";
 import SearchQuestion from "./SearchQuestion";
+import {options , customStyles} from "./SelectOption";
 import MSearchQuestion from "./modal/MSearchQuestion";
 import PageFirst from "../PageFirst";
 import { showQuestion, postQuestion, searchQuestion, inputQuestion } from "./api/api-question";
-
-const options = [
-  { value: '오래된순', label: '오래된순' },
-  { value: '최신순', label: '최신순' }
-];
-
-const customStyles = {
-  option: (provided, state) => ({ // 오래된순, 최신순
-    ...provided,
-    backgroundColor: state.isFocused ? '#6271f5' : null,
-    color: state.isFocused ? '#fff' : '#000',
-    paddingLeft: 10,
-    borderRadius: '2px',
-    textAlign: 'center',
-    fontSize: '12px',
-  }),
-  control: (provided) => ({ // 보이는 부분 (default=최신순)
-    ...provided,
-    borderRadius: '10px',
-    textAlign: 'center',
-    fontSize: '13px',
-  }),
-};
 
 const QuestionHome = () => {
   const header = {

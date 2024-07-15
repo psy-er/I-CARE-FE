@@ -31,7 +31,6 @@ call(`/api/question/search?childId=${childId}&output=${item.output}`, "GET", nul
 .then((response) => {
     if (response && response.length > 0) {
         setItems(response);
-        console.log(response);
     } else {
         setModalOpen(true);
     }

@@ -3,7 +3,7 @@ import Modal from '../../Modal';
 import '../css/qmodal/MAddQuestion.css';
 import '../css/qmodal/ModalTwoButton.css';
 
-const MAddCheckQuestion = (props) => {
+const MCheckQuestion = (props) => {
   const isOpen = props.isOpen;
   const onClose = props.onClose;
   const onOutputClick = props.onOutputClick;
@@ -21,4 +21,4 @@ const MAddCheckQuestion = (props) => {
   );
 }
 
-export default MAddCheckQuestion;
+export default MCheckQuestion;
