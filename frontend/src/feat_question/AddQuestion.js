@@ -83,7 +83,6 @@ const AddQuestion = (props) => {
 
     // 이미 작성한 경우 또 못 하게
     const turnOffReadOnly = () => {
-      console.log("Off");
       if (items.length > 0 && Stringdate === items[items.length-1].date) { // 이미 작성된 경우.
         setQuestion({output: ""});
         setText("");

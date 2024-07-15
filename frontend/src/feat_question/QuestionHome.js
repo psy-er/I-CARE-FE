@@ -3,11 +3,11 @@ import "./css/QuestionHome.css";
 import Select from 'react-select';
 import { Divider, List } from "@mui/material";
 import AddQuestion from "./AddQuestion";
-import { call } from "../api/ApiService";
 import QuestionList from "./QuestionList";
 import SearchQuestion from "./SearchQuestion";
 import MSearchQuestion from "./modal/MSearchQuestion";
 import PageFirst from "../PageFirst";
+import { showQuestion, postQuestion, searchQuestion, inputQuestion } from "./api/api-question";
 
 const options = [
   { value: '오래된순', label: '오래된순' },
@@ -50,65 +50,32 @@ const QuestionHome = () => {
 
   const handleCloseModal = () => {
     setModalOpen(false);
+    showQuestion(setItems);
   };
 
-  useEffect(() => { 
-    const childId = "402880a690b71e370190b71f891b0001";
-    call(`/api/question?childId=${childId}`,"GET",null)
-    .then((response) => {
-      if (response) {
-        setItems(response);
-      }
-    })
-    .catch((error) => {
-      console.error("Error fetching items", error);
-    });
-  },[]);
-
-  //추가 
-  const postQuestion = (item) => {
-    const childId = "402880a690b71e370190b71f891b0001";
-    call(`/api/question?childId=${childId}`, "POST", item)
-    .then((response) => {
-      if(response) {
-        setItems([...items, response]);
-      }
-    }) 
-  };
-
-  //검색
-  const searchQuestion = (item) => {
-    const childId = "402880a690b71e370190b71f891b0001";
-    call(`/api/question/search?childId=${childId}&output=${item.output}`, "GET", null)
-    .then((response) => {
-        if (response && response.length > 0) {
-          setItems(response);
-        } else {
-          setModalOpen(true);
-        }
-    })
+  // 추가
+  const handleAddQuestion = (item) => {
+    postQuestion(item, setItems, items);
   }
 
-  //질문
-  const inputQuestion = () => {
-    const childId = "402880a690b71e370190b71f891b0001";
-    // const dayOfYear = Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 86400000);
-    // const inputId = dayOfYear  % 11 + 1;
-    const m = date.getMinutes();
-    const inputId = m % 11 + 1;
-    call(`/api/question/input?childId=${childId}&inputId=${inputId}`, "GET", null)
-    .then((response) => {
-      if(response) {
-        setInput(response.input);
-      }
-    }) 
-  };
+  // 검색
+  const handleSearchQuestion = (item) => {
+    searchQuestion(item, setItems, setModalOpen);
+  }
+
+  // 오늘의 질문 출력
+  const handleInputQuestion = () => {
+    inputQuestion(date, setInput);
+  }
 
   useEffect(() => {
-    inputQuestion();
+    showQuestion(setItems);
+    handleInputQuestion();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+
+  const num = items.length;
   //리스트 불러오기 (최신 순)
   let questionNewList = items.length > 0 && (
       <List>
@@ -143,7 +110,7 @@ const QuestionHome = () => {
 
       <div className="todayInput">{input}</div>
 
-      <AddQuestion postQuestion={postQuestion} 
+      <AddQuestion postQuestion={handleAddQuestion} 
        date={date} items={items}/>
 
       <div className="search"> 
@@ -157,12 +124,14 @@ const QuestionHome = () => {
           styles={customStyles}
           className="selectBox"
         />
-        <SearchQuestion searchQuestion={searchQuestion}/> {/* 검색부분 */}
+        <SearchQuestion searchQuestion={handleSearchQuestion}/> {/* 검색부분 */}
       </div>
         <MSearchQuestion 
           isOpen={modalOpen} onClose={handleCloseModal} /> {/* 모달부분 */}
         
       </div>
+
+      num : {num}
       
       <div className="questionList">
       {questionList}
