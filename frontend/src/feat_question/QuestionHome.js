@@ -53,7 +53,7 @@ const QuestionHome = () => {
   };
 
   useEffect(() => { 
-    const childId = "2c94c9b6907791d0019077931c970001";
+    const childId = "402880a690b71e370190b71f891b0001";
     call(`/api/question?childId=${childId}`,"GET",null)
     .then((response) => {
       if (response) {
@@ -67,7 +67,7 @@ const QuestionHome = () => {
 
   //추가 
   const postQuestion = (item) => {
-    const childId = "2c94c9b6907791d0019077931c970001";
+    const childId = "402880a690b71e370190b71f891b0001";
     call(`/api/question?childId=${childId}`, "POST", item)
     .then((response) => {
       if(response) {
@@ -78,7 +78,7 @@ const QuestionHome = () => {
 
   //검색
   const searchQuestion = (item) => {
-    const childId = "2c94c9b6907791d0019077931c970001";
+    const childId = "402880a690b71e370190b71f891b0001";
     call(`/api/question/search?childId=${childId}&output=${item.output}`, "GET", null)
     .then((response) => {
         if (response && response.length > 0) {
@@ -91,11 +91,11 @@ const QuestionHome = () => {
 
   //질문
   const inputQuestion = () => {
-    const childId = "402880a690ace9720190acec3b050002";
-    const dayOfYear = Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 86400000);
-    const inputId = dayOfYear  % 11 + 1;
-    // const m = date.getMinutes();
-    // const inputId = m % 11 + 1;
+    const childId = "402880a690b71e370190b71f891b0001";
+    // const dayOfYear = Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 86400000);
+    // const inputId = dayOfYear  % 11 + 1;
+    const m = date.getMinutes();
+    const inputId = m % 11 + 1;
     call(`/api/question/input?childId=${childId}&inputId=${inputId}`, "GET", null)
     .then((response) => {
       if(response) {

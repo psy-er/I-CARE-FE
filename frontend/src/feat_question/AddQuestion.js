@@ -21,9 +21,7 @@ const AddQuestion = (props) => {
     const [modalCheckOpen, setModalCheckOpen] = useState(false);
 
     const [readOnly, setReadOnly] = useState(false);
-
-    console.log(items);
-
+    
     // 답변 작성 및 글자수 관리
     const handleChange = (e) => {
       const { name, value } = e.target;
@@ -44,8 +42,8 @@ const AddQuestion = (props) => {
 
     // 모달창 [정말 작성할 것인지 - 닫기]
     const handleCloseCheckModal = () => {
-      setQuestion({output: ""});
-      setText("");
+      // setQuestion({output: ""});
+      // setText("");
       setModalCheckOpen(false);
     };
 

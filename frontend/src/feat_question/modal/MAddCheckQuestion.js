@@ -14,8 +14,8 @@ const MAddCheckQuestion = (props) => {
     <Modal onClose={onClose}>
       <p className="modalQ">정말 등록하시겠습니까?</p>
       <div className="modalTwoButton">
-        <button className="yes" onClick={onOutputClick}>예</button>
-        <button className="no" onClick={onClose}>아니오</button>
+        <button className="yes" onClick={onOutputClick}>등록</button>
+        <button className="no" onClick={onClose}>취소</button>
       </div>
     </Modal>
   );
