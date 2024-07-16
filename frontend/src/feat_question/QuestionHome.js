@@ -17,7 +17,7 @@ const QuestionHome = () => {
   };
   const [items, setItems] = useState([]);
   const [input, setInput] = useState('오늘의 질문을 준비하는 중입니다.'); // 추가된 상태
-  const [sortOrder, setSortOrder] = useState(options[1]); // 기본값을 최신순으로 설정
+  const [sortOrder, setSortOrder] = useState(options[0]); // 기본값을 최신순으로 설정
   const [modalOpen, setModalOpen] = useState(false);
   
   const date = new Date(); // 날짜 받아오기  
@@ -80,41 +80,35 @@ const QuestionHome = () => {
       </List>
   );
 
-  const questionList = sortOrder === options[1] ? questionNewList : questionOldList;
+  const questionList = sortOrder === options[0] ? questionNewList : questionOldList;
 
   return (
     <PageFirst header={header}>
     <div>
-
       <div className="todayInput">{input}</div>
 
       <AddQuestion postQuestion={handleAddQuestion} 
-       date={date} items={items}/>
+      date={date} items={items}/>
 
       <div className="search"> 
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Select
+            value={sortOrder}
+            onChange={handleSortChange}
+            options={options}
+            styles={customStyles}
+            className="selectBox"
+          />
+          <SearchQuestion searchQuestion={handleSearchQuestion}/> {/* 검색부분 */}
+        </div>
 
-
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Select
-          value={sortOrder}
-          onChange={handleSortChange}
-          options={options}
-          styles={customStyles}
-          className="selectBox"
-        />
-        <SearchQuestion searchQuestion={handleSearchQuestion}/> {/* 검색부분 */}
-      </div>
         <MSearchQuestion 
           isOpen={modalOpen} onClose={handleCloseModal} /> {/* 모달부분 */}
-        
       </div>
 
       num : {num}
       
-      <div className="questionList">
-      {questionList}
-      </div>
-
+      <div className="questionList">{questionList}</div>
     </div>
     </PageFirst>
   );
