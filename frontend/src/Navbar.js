@@ -1,4 +1,4 @@
-// import React from "react";
+import React from "react";
 // import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 import { Link, useLocation, matchPath } from "react-router-dom";
@@ -22,7 +22,7 @@ const Navbar = () => {
   // useEffect(() => {
   //   selectchild()
   //     .then((response) => {
-  //       setChildName(response[3].name);
+  //       setChildName(response[0].name);
   //     })
   // }, []);
 
