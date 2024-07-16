@@ -136,8 +136,7 @@ const AddQuestion = (props) => {
 
     <MCheckQuestion
         isOpen={modalCheckOpen} onClose={handleCloseCheckModal}
-        onOutputClick={onOutputClick}
-         />
+        onOutputClick={onOutputClick} />
     
     </div>
   );
