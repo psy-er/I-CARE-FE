@@ -1,8 +1,7 @@
-import React from "react";
-// import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 import { Link, useLocation, matchPath } from "react-router-dom";
-// import {selectchild} from "./feat_login/api/api-login";
+import {getChild} from "./feat_login/api/api-login";
 
 const Navbar = () => {
   // 현재 주소
@@ -16,15 +15,18 @@ const Navbar = () => {
 
 
   /* 추후에 자녀이름 봇 수정 */
-  // const [childName, setChildName] = useState("");
+  const [childName, setChildName] = useState("챗");
 
   // /* 자녀 이름 */
-  // useEffect(() => {
-  //   selectchild()
-  //     .then((response) => {
-  //       setChildName(response[0].name);
-  //     })
-  // }, []);
+  useEffect(() => {
+    const childId = localStorage.getItem("childId");
+    if(childId) {
+      getChild(childId)
+        .then((response) => {
+          setChildName(response.nickname);
+        });
+    }
+  }, []);
 
   return (
     <nav className="navbar">
@@ -38,8 +40,8 @@ const Navbar = () => {
           <img src="/bot_un.png" alt="챗봇" /> // 선택 안 했을 때
           )}
           <div className={isChatBotLink ? 'active' : 'inactive'}>
-            {/* {childName} */}
-            00봇</div>
+            {childName}봇
+          </div>
         </div>
       </Link>
 
