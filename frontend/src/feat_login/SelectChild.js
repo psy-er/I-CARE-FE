@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Container, Grid, Typography, Button, CircularProgress } from "@mui/material";
 import { selectchild } from "./api/api-login";
 import Header from "../Header";
-import PageFirst from "../PageFirst";
+import { useNavigate } from "react-router-dom";
 
 function SelectChild() {
+    const navigate = useNavigate();
     const [childList, setChildList] = useState([]); 
     const [loading, setLoading] = useState(true);
 
@@ -16,9 +17,9 @@ function SelectChild() {
         setLoading(true);
         selectchild()
             .then((response) => {
-                console.log(response.data);
-                if (Array.isArray(response.data) && response.data.length > 0) {
-                    const formattedChildList = response.data.map(child => ({
+                console.log(response);
+                if (Array.isArray(response) && response.length > 0) {
+                    const formattedChildList = response.map(child => ({
                         childId: child.childId,
                         nickname: child.nickname,
                         name: child.name,
@@ -43,17 +44,23 @@ function SelectChild() {
         window.location.href = "/addchild";
     };
 
+    const handleSelectChild = (childId) => {
+        localStorage.setItem("childId", childId);
+        navigate("/chatbot");
+    }
+
     return (
         <div className="app-wrapper">
             <div className="app-container">
-            <Header title="자녀 정보" type="back"> </Header>
+            <Header title="자녀 정보" type="none" />
             <Grid container direction="column" alignItems="center" spacing={2}>
                 {loading ? (
                     <CircularProgress />
                 ) : (
                     childList.map((child) => (
                         <Grid item key={child.childId}>
-                            <Button variant="contained" color="primary">
+                            <Button variant="contained" color="primary"
+                                onClick={() => handleSelectChild(child.childId)}>
                                 {child.name}
                             </Button>
                         </Grid>
