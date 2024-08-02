@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { forwardRef, useState } from "react";
 import { InputAdornment, TextField } from "@mui/material";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -6,7 +6,7 @@ import "./css/AddQuestion.css";
 import MDoneQuestion from "./modal/MDoneQuestion";
 import MCheckQuestion from "./modal/MCheckQuestion";
 
-const AddQuestion = (props) => {
+const AddQuestion = forwardRef((props, ref) => {
     const items = props.items;
     const date = props.date; // 날짜 받아오기 
     const Stringdate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`; // 오늘 날짜
@@ -95,7 +95,8 @@ const AddQuestion = (props) => {
 
   return (
     <div className="addQ">
-      <TextField 
+      <TextField
+        inputRef={ref}
         className="todayOutput"
         name="output"
         value={question.output}
@@ -142,6 +143,6 @@ const AddQuestion = (props) => {
     
     </div>
   );
-}
+});
 
 export default AddQuestion;

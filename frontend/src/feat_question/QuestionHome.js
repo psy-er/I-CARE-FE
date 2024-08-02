@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Select from 'react-select';
 import { Divider, List } from "@mui/material";
 import "./css/QuestionHome.css";
@@ -46,10 +46,13 @@ const QuestionHome = () => {
     inputQuestion(date, setInput);
   }
 
-  // 클릭 시, SearchQuestion으로 이동.
-  const goToSearch = () => {
-    
-  }
+  const inputRef = useRef(null);
+
+  const handleClick = () => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  };
 
   useEffect(() => {
     showQuestion(setItems);
@@ -87,8 +90,8 @@ const QuestionHome = () => {
 
   const questionList = sortOrder === options[0] ? questionNewList : questionOldList;
 
-  const None = () => 
-    <div className="none">
+  const None = ({onClick}) => 
+    <div className="none" onClick={onClick}>
       일일문답이 없습니다. <br />
       일일문답을 작성해주세요.
     </div>;
@@ -99,7 +102,8 @@ const QuestionHome = () => {
       <div className="todayInput">{input}</div>
 
       <AddQuestion postQuestion={handleAddQuestion} 
-      date={date} items={items}/>
+      date={date} items={items}
+      ref={inputRef}/>
 
       <div className="search"> 
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -120,7 +124,7 @@ const QuestionHome = () => {
       {/* num : {num} */}
 
       <div>
-      {num === 0 ? <None /> : 
+      {num === 0 ? <None onClick={handleClick}/> : 
       <div className="questionList">{questionList}</div>}
       </div>
     
