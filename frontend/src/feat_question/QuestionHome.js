@@ -46,6 +46,11 @@ const QuestionHome = () => {
     inputQuestion(date, setInput);
   }
 
+  // 클릭 시, SearchQuestion으로 이동.
+  const goToSearch = () => {
+    
+  }
+
   useEffect(() => {
     showQuestion(setItems);
     handleInputQuestion();
@@ -82,9 +87,15 @@ const QuestionHome = () => {
 
   const questionList = sortOrder === options[0] ? questionNewList : questionOldList;
 
+  const None = () => 
+    <div className="none">
+      일일문답이 없습니다. <br />
+      일일문답을 작성해주세요.
+    </div>;
+    
   return (
     <PageFirst header={header}>
-    <div>
+    <div className="questionHome">
       <div className="todayInput">{input}</div>
 
       <AddQuestion postQuestion={handleAddQuestion} 
@@ -106,9 +117,13 @@ const QuestionHome = () => {
           isOpen={modalOpen} onClose={handleCloseModal} /> {/* 모달부분 */}
       </div>
 
-      num : {num}
-      
-      <div className="questionList">{questionList}</div>
+      {/* num : {num} */}
+
+      <div>
+      {num === 0 ? <None /> : 
+      <div className="questionList">{questionList}</div>}
+      </div>
+    
     </div>
     </PageFirst>
   );
