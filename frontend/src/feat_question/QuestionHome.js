@@ -57,6 +57,7 @@ const QuestionHome = () => {
   useEffect(() => {
     showQuestion(setItems);
     handleInputQuestion();
+    handleClick();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
