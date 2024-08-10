@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Grid, Typography, Button, CircularProgress } from "@mui/material";
+import { Container, Grid, Button, CircularProgress, Typography, Box } from "@mui/material";
 import { selectchild } from "./api/api-login";
 import Header from "../Header";
 import { useNavigate } from "react-router-dom";
@@ -71,9 +71,8 @@ function SelectChild() {
                         +
                     </Button>
                 </Grid>
-            </Grid>
+            </div>
         </div>
-    </div>
     );
 }
 
