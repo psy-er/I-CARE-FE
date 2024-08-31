@@ -1,20 +1,23 @@
 import React from "react";
-import {Container, Grid, Typography, TextField, Button} from "@mui/material";
-import {Link} from "react-router-dom";
+import {Container, Grid, Typography, TextField, Button, Box} from "@mui/material";
+import {Link, useNavigate} from "react-router-dom";
 import {signup} from "./api/api-login";
 
 function SignUp() {
-    const handleSubmit = (event) => {
+    const navigate = useNavigate();
+    const handleSubmit = async (event) => {
         event.preventDefault();
         // 오브젝트에서 form에 저장된 데이터를 맵의 형태로 바꿔줌.
         const data = new FormData(event.target);
-        const username = data.get("username");
+        const email = data.get("email");
         const password = data.get("password");
+        const nickname = data.get("nickname");
 
-        signup({username: username, password: password}).then(
+        await signup({email: email, password: password, nickname: nickname}).then(
             (response) => {
-                // 계정 생성 성공시 login 페이지로 리다이렉트
-                window.location.href = "/login";
+                // 계정 생성 성공시 login 페이지로 리다이렉트?? 자녀추가 페이지로 이동해야 하는 것아닌가?
+                navigate("/login");
+                //window.location.href = "/addchild";
             }
         );
     };
@@ -24,49 +27,89 @@ function SignUp() {
             <form noValidate onSubmit={handleSubmit}>
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
-                        <Typography component="h1" variant="h5">
-                            계정 생성
-                        </Typography>
+                        <Box mt={7}>
+                            <Typography component="h2" variant="h5" style= {{ fontWeight: "bold"}}>
+                                <div> 반갑습니다 :) </div> 
+                                <div> 부모클래스입니다 </div>
+                            </Typography>
+                        </Box>
                     </Grid>
                     <Grid item xs={12}>
+                        <Box mt = {2}>
+                        <Typography component="label" variant="body2" style={{ marginBottom: "10px" }}>
+                            이메일
+                        </Typography>
                         <TextField
                             autoComplete="fname"
-                            name="username"
+                            name="email"
                             variant="outlined"
-                            required
                             fullWidth
-                            id="username"
-                            label="아이디"
+                            id="email"
+                            placeholder="이메일을 입력하세요"
                             autoFocus
                         />
+                        </Box>
                     </Grid>
                     <Grid item xs={12}>
+                        <Box mt = {2}>
+                        <Typography component="label" variant="body2" style={{ marginBottom: "10px" }}>
+                            비밀번호 입력
+                        </Typography>
                         <TextField 
                             variant="outlined"
-                            required
                             fullWidth
                             name = "password"
-                            label="패스워드"
+                            placeholder="비밀번호을 입력하세요"
                             autoFocus
                             id="password"
                             autoComplete="current-password"
                         />
+                        </Box>
                     </Grid>
                     <Grid item xs={12}>
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            color="primary">
-                            계정 생성
-                        </Button>
+                        <Box mt = {2}>
+                            <Typography component="label" variant="body2" style={{ marginBottom: "10px" }}>
+                                비밀번호 확인
+                            </Typography>
+                            <TextField 
+                                variant="outlined"
+                                fullWidth
+                                name = "passwordverify"
+                                placeholder="비밀번호를 입력하세요"
+                                autoFocus
+                                id="passwordverify"
+                                autoComplete="current-password"
+                        />
+                        </Box>
                     </Grid>
-                </Grid>
-                <Grid container justify="flex-end">
-                    <Grid item>
-                        <Link to="/login" variant="body2">
-                            이미 계정이 있습니까? 로그인하세요.
-                        </Link>
+                    <Grid item xs={12}>
+                        <Box mt = {2}>
+                            <Typography component="label" variant="body2" style={{ marginBottom: "10px" }}>
+                                닉네임
+                            </Typography>
+                        <TextField 
+                            variant="outlined"
+                            fullWidth
+                            name = "nickname"
+                            placeholder="닉네임을 입력하세요"
+                            autoFocus
+                            id="nickname"
+                            autoComplete="current-password"
+                        />
+                        </Box>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Box mt = {2}>
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                style={{ fontWeight: "bold" }}
+                                sx={{ height: "56px", fontSize: "1rem", backgroundColor: "#D9D9D9", color: "white", boxShadow: 'none' }}
+                                color="primary">
+                                회원가입
+                            </Button>
+                        </Box>
                     </Grid>
                 </Grid>
             </form>

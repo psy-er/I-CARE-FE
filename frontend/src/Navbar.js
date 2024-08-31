@@ -1,28 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 import { Link, useLocation, matchPath } from "react-router-dom";
+import {getChild} from "./feat_login/api/api-login";
 
 const Navbar = () => {
   // 현재 주소
   const location = useLocation();
 
-  const isFirstLink = matchPath({path: '/first/*'}, location.pathname); //00봇
+  const isChatBotLink = matchPath({path: '/chatbot/*'}, location.pathname); //00봇
   const isSecondLink = matchPath({path: '/second/*'}, location.pathname); //실시간 영상
   const isDiaryLink = matchPath({path: '/diary/*'}, location.pathname); //공감일기
   const isProfileLink = matchPath({path: '/profile/*'}, location.pathname); //워드 클라우드
   const isQuestionLink = matchPath({path: '/question/*'}, location.pathname); //일일문답
+
+
+  /* 추후에 자녀이름 봇 수정 */
+  const [childName, setChildName] = useState("챗");
+
+  // /* 자녀 이름 */
+  useEffect(() => {
+    const childId = localStorage.getItem("childId");
+    if(childId) {
+      console.log("childId : ", childId);
+      getChild(childId)
+        .then((response) => {
+          setChildName(response.nickname);
+        });
+    }
+  }, []);
+
   return (
     <nav className="navbar">
       
       {/* 00봇 아이콘 */}
-      <Link to="/first" className="nav-link" style={{ textDecoration: 'none', fontSize:'0.7rem'}}>
+      <Link to="/chatbot" className="nav-link" style={{ textDecoration: 'none', fontSize:'0.7rem'}}>
         <div>
-          {isFirstLink ? (
+          {isChatBotLink ? (
           <img src="/bot.png" alt="챗봇" /> //선택 했을 때
           ) : (
           <img src="/bot_un.png" alt="챗봇" /> // 선택 안 했을 때
           )}
-          <div className={isFirstLink ? 'active' : 'inactive'}>00봇</div>
+          <div className={isChatBotLink ? 'active' : 'inactive'}>
+            {childName}봇
+          </div>
         </div>
       </Link>
 
@@ -30,9 +50,9 @@ const Navbar = () => {
       <Link to="/second" className="nav-link" style={{ textDecoration: 'none', fontSize:'0.7rem'}}>
         <div>
           {isSecondLink ? (
-          <img src="/bot.png" alt="실시간 영상" /> //선택 했을 때
+          <img src="/video.png" alt="실시간 영상" /> //선택 했을 때
           ) : (
-          <img src="/bot_un.png" alt="실시간 영상" /> // 선택 안 했을 때
+          <img src="/video_un.png" alt="실시간 영상" /> // 선택 안 했을 때
           )}
           <div className={isSecondLink ? 'active' : 'inactive'}>실시간 영상</div>
         </div>

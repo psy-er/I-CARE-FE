@@ -3,8 +3,13 @@ import { useLocation, useNavigate } from "react-router-dom";
 import MAddIcon from "./modal/MAddIcon";
 import './css/AddDiary.css';
 import { postDiary, putDiary } from "./api/api-diary";
+import PageFirst from "../PageFirst";
 
 const AddDiary = () => {
+  const header = {
+    title: "공감일기",
+    type: "back"
+  };
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -32,8 +37,10 @@ const AddDiary = () => {
 
   useEffect(() => {
     const textarea = textareaRef.current;
-    textarea.style.height = 'auto';
-    textarea.style.height = `${textarea.scrollHeight}px`;
+    if(textarea) {
+      textarea.style.height = 'auto';
+      textarea.style.height = `${textarea.scrollHeight}px`;
+    }
   }, [diary.content]);
 
   const onChange = (e) => {
@@ -83,7 +90,8 @@ const AddDiary = () => {
   }
 
   return (
-    <div className="add">
+    <PageFirst header={header}>
+    <div className="addDiary">
       <div className="date">{stringDate} {weekday}요일</div>
       <textarea className="content" value={diary.content} name="content"
         onChange={onChange} ref={textareaRef}
@@ -92,6 +100,7 @@ const AddDiary = () => {
       <MAddIcon isOpen={isPopupOpen} onChange={onChange}
         onSubmit={onSubmit} onClose={handleClosePopup} diary={diary} />
     </div>
+    </PageFirst>
   );
 }
 

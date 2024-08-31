@@ -3,8 +3,13 @@ import { getProfileList } from "./api/api-profile";
 import './css/ProfileList.css';
 import Profile from "./Profile";
 import AddProfile from "./AddProfile";
+import PageFirst from "../PageFirst";
 
 const ProfileList = () => {
+  const header = {
+    title: "워드클라우드",
+    type: "home"
+  };
   const [profileList, setProfileList] = useState([]);
   const [sort, setSort] = useState("latest");
 
@@ -16,7 +21,7 @@ const ProfileList = () => {
           setProfileList(sortedList);
         }
       });
-  });
+  }, []);
 
   useEffect(() => {
     const sortedList = sortProfiles(profileList, sort);
@@ -46,22 +51,26 @@ const ProfileList = () => {
   }
 
   return (
+    <PageFirst header={header}>
     <div className="profileList">
-      <div className="sort">
-        <select onChange={handleSort} value={sort}>
-          <option value="latest">최신순</option>
-          <option value="old">오래된 순</option>
-        </select>
+      <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '10px'}}>
+        <div className="sort">
+          <select onChange={handleSort} value={sort}>
+            <option value="latest">최신순</option>
+            <option value="old">오래된 순</option>
+          </select>
+        </div>
+        <div className="add">
+          <AddProfile onUpdate={onUpdate} />
+        </div>
       </div>
       <div className="profiles">
         {profileList.map((profile) => (
           <Profile key={profile.profileId} profile={profile} />
         ))}
       </div>
-      <div className="add">
-        <AddProfile onUpdate={onUpdate} />
-      </div>
     </div>
+    </PageFirst>
   );
 }
 
